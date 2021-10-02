@@ -1,5 +1,8 @@
 ﻿@layout LoginLayout
 @page "/Login"
+@using FamilyBlazorWebApp.Impl
+@inject IUserService UserService
+@inject NavigationManager NavigationManager
 
 <div class="row page-background-class justify-content-center align-items-center">
     <div class="col-4 overflow-auto">
@@ -25,9 +28,18 @@
             <br/>
 
             <div class="form-group">
-                <p class="action">
-                    <button class="btn btn-outline-dark" type="submit">Login</button>
-                </p>
+                <div class="row">
+                    <div class="col-6">
+                        <p class="action">
+                            <button class="btn btn-outline-dark" type="submit">Login</button>
+                        </p>
+                    </div>
+                    <div class="col-6">
+                        <p class="action">
+                            <button class="btn btn-outline-dark" type="submit" @onclick="@(() => CreateUser())">Create User</button>
+                        </p>
+                    </div>
+                </div>
             </div>
 
             <br/>
@@ -36,6 +48,17 @@
     </div>
 </div>
 
-@code {
-    
+@code 
+{
+    private IList<User> users;
+
+    protected override async Task OnInitializedAsync()
+    {
+        
+    }
+
+    private void CreateUser()
+    {
+        NavigationManager.NavigateTo("/CreateUser");
+    }
 }

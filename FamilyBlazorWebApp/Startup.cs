@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using FamilyBlazorWebApp.Impl;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Hosting;
@@ -27,6 +28,8 @@ namespace FamilyBlazorWebApp
         {
             services.AddRazorPages();
             services.AddServerSideBlazor();
+            services.AddScoped<IUserService, UserService>();
+            services.AddScoped<IFamilyData, FamilyData>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
