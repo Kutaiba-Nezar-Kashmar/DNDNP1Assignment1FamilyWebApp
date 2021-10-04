@@ -1,4 +1,4 @@
-﻿namespace FamilyBlazorWebApp
+﻿namespace Models
 {
     public class Person
     {

@@ -56,3 +56,8 @@ C:\Users\kkash\RiderProjects\DNP1Assignment1\FamilyBlazorWebApp\obj\Debug\net5.0
 C:\Users\kkash\RiderProjects\DNP1Assignment1\FamilyBlazorWebApp\obj\Debug\net5.0\Razor\Shared\LoginLayout.razor.g.cs
 C:\Users\kkash\RiderProjects\DNP1Assignment1\FamilyBlazorWebApp\obj\Debug\net5.0\RazorDeclaration\Pages\CreateUser.razor.g.cs
 C:\Users\kkash\RiderProjects\DNP1Assignment1\FamilyBlazorWebApp\obj\Debug\net5.0\Razor\Pages\CreateUser.razor.g.cs
+C:\Users\kkash\RiderProjects\DNP1Assignment1\FamilyBlazorWebApp\bin\Debug\net5.0\adults.json
+C:\Users\kkash\RiderProjects\DNP1Assignment1\FamilyBlazorWebApp\bin\Debug\net5.0\families.json
+C:\Users\kkash\RiderProjects\DNP1Assignment1\FamilyBlazorWebApp\bin\Debug\net5.0\users.json
+C:\Users\kkash\RiderProjects\DNP1Assignment1\FamilyBlazorWebApp\obj\Debug\net5.0\RazorDeclaration\Pages\Family.razor.g.cs
+C:\Users\kkash\RiderProjects\DNP1Assignment1\FamilyBlazorWebApp\obj\Debug\net5.0\Razor\Pages\Family.razor.g.cs

@@ -2,9 +2,12 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using FamilyBlazorWebApp.Impl;
+using Authentication;
+using Data;
+using Data.Impl;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
@@ -30,6 +33,7 @@ namespace FamilyBlazorWebApp
             services.AddServerSideBlazor();
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<IFamilyData, FamilyData>();
+            services.AddScoped<AuthenticationStateProvider, CustomAuthenticationStateProvider>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

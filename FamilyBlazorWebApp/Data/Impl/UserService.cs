@@ -3,21 +3,51 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text.Json;
-using FamilyBlazorWebApp.Impl;
+using Models;
 
-namespace FamilyBlazorWebApp
+
+namespace Data.Impl
 {
     public class UserService : IUserService
     {
         private string userFile = "users.json";
         private IList<User> users;
 
+        public UserService()
+        {
+           Seed();
+           writeToJson();
+        }
+
         public void CreateUser(User user)
         {
-            int max = users.Max(user => user.UserId);
-            user.UserId = (++max);
             users.Add(user);
             writeToJson();
+        }
+
+        private void Seed()
+        {
+            users = new[]
+            {
+                new User()
+                {
+                    FirstName = "kutaiba",
+                    LastName = "Kashmar",
+                    UserName = "kt",
+                    Password = "1234",
+                    Age = 27,
+                    EmailAddress = "bl"
+                },
+                new User()
+                {
+                    FirstName = "kutaiba2",
+                    LastName = "Kashmar2",
+                    UserName = "kt2",
+                    Password = "123411",
+                    Age = 271,
+                    EmailAddress = "bl2"
+                }
+            }.ToList();
         }
 
         public User ValidateUser(string userName, string password)

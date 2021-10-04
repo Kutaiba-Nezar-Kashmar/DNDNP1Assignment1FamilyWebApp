@@ -1,4 +1,7 @@
-﻿namespace FamilyBlazorWebApp.Impl
+﻿using Models;
+
+
+namespace Data
 {
     public interface IUserService
     {

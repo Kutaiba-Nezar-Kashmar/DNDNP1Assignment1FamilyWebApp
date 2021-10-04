@@ -1,6 +1,88 @@
 ﻿@page "/CreateUser"
-<h3>CreateUser</h3>
 
-@code {
+@using Microsoft.AspNetCore.Components
+@using Models
+@using Data
+@inject IUserService UserService
+@inject NavigationManager NavigationManager
+
+<div class="row justify-content-center align-items-center">
+        <div class="col-6 overflow-auto">
+            <div class="CreateUserBox">
+                <div class="form-group">
+                    <p id="createUserMessage">please fill the below fields</p>
+                </div>
+
+                <br/>
+
+                <div class="form-group">
+                    <input type="text" placeholder="First name" @bind-value="newUser.FirstName"/>
+                </div>
+
+                <br/>
+
+                <div class="form-group">
+                    <input type="text" placeholder="Last name" @bind-value="newUser.LastName"/>
+                </div>
+
+                <br/>
+
+                <div class="form-group">
+                    <input type="email" placeholder="E-mail address" @bind-value="newUser.EmailAddress"/>
+                </div>
+
+                <br/>
+
+                <div class="form-group">
+                    <input type="number" placeholder="Age" @bind-value="newUser.Age"/>
+                </div>
+
+                <br/>
+
+                <div>
+                    <input type="text" placeholder="User name" @bind-value="newUser.UserName"/>
+                </div>
+
+                <br/>
+
+                <div class="form-group">
+                    <input type="password" placeholder="Password" @bind-value="newUser.Password"/>
+                </div>
+
+                <br/>
+                
+                <div class="form-group">
+                    @message
+                </div>
+                
+                <br/>
+
+                <div class="form-group">
+                    <div>
+                        <button class="btn btn-outline-dark" type="submit" @onclick="BackToLogin">Back</button>
+                    </div>
+                    <div>
+                        <button class="btn btn-outline-dark" type="submit" @onclick="createUser">Create user</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+@code 
+{
+    private string message;
     
+    private User newUser = new User();
+
+    private void createUser()
+    {
+        UserService.CreateUser(newUser);
+        message = "User created. Please login to use the system";
+    }
+
+    private void BackToLogin()
+    {
+        NavigationManager.NavigateTo("/Login");
+    }
 }

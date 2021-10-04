@@ -84,7 +84,21 @@ using FamilyBlazorWebApp.Shared;
 #nullable disable
 #nullable restore
 #line 3 "C:\Users\kkash\RiderProjects\DNP1Assignment1\FamilyBlazorWebApp\Pages\Login.razor"
-using FamilyBlazorWebApp.Impl;
+using Models;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 4 "C:\Users\kkash\RiderProjects\DNP1Assignment1\FamilyBlazorWebApp\Pages\Login.razor"
+using Data;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 5 "C:\Users\kkash\RiderProjects\DNP1Assignment1\FamilyBlazorWebApp\Pages\Login.razor"
+using Authentication;
 
 #line default
 #line hidden
@@ -99,16 +113,44 @@ using FamilyBlazorWebApp.Impl;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 52 "C:\Users\kkash\RiderProjects\DNP1Assignment1\FamilyBlazorWebApp\Pages\Login.razor"
+#line 70 "C:\Users\kkash\RiderProjects\DNP1Assignment1\FamilyBlazorWebApp\Pages\Login.razor"
  
-    private IList<User> users;
+    private string userName;
+    private string password;
+    private string errorMessage;
 
-    protected override async Task OnInitializedAsync()
+    public async Task PerformLogin()
     {
-        
+        errorMessage = "";
+        try
+        {
+            ((CustomAuthenticationStateProvider) AuthenticationStateProvider).ValidateLogin(userName, password);
+            NavigationManager.NavigateTo("/Family");
+            userName = "";
+            password = "";
+        }
+        catch (Exception e)
+        {
+            errorMessage = e.Message;
+        }
     }
 
-    private void CreateUser()
+    public async Task PerformLogout()
+    {
+        errorMessage = "";
+        userName = "";
+        password = "";
+        try
+        {
+            ((CustomAuthenticationStateProvider) AuthenticationStateProvider).Logout();
+            NavigationManager.NavigateTo("/");
+        }
+        catch (Exception e)
+        {
+        }
+    }
+
+    private void ToCreateUserPage()
     {
         NavigationManager.NavigateTo("/CreateUser");
     }
@@ -116,6 +158,7 @@ using FamilyBlazorWebApp.Impl;
 #line default
 #line hidden
 #nullable disable
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private AuthenticationStateProvider AuthenticationStateProvider { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private NavigationManager NavigationManager { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private IUserService UserService { get; set; }
     }

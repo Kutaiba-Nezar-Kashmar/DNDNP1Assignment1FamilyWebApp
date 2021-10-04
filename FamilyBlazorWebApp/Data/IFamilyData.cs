@@ -1,7 +1,8 @@
 ﻿using System.Collections.Generic;
+using Models;
 
 
-namespace FamilyBlazorWebApp
+namespace Data
 {
     public interface IFamilyData
     {

@@ -1,63 +1,109 @@
 ﻿@layout LoginLayout
 @page "/Login"
-@using FamilyBlazorWebApp.Impl
+@using Models
+@using Data
+@using Authentication
 @inject IUserService UserService
 @inject NavigationManager NavigationManager
+@inject AuthenticationStateProvider AuthenticationStateProvider
 
-<div class="row page-background-class justify-content-center align-items-center">
-    <div class="col-4 overflow-auto">
-        <div class="loginBox">
-            <div class="form-group">
-                <h1 id="WelcomeMessage">Welcome to Family Blazor</h1>
-            </div>
-            
-            <br/>
-            
-            <div class="form-group inputFields">
-                <label class="inputForLogin">User name:</label>
-                <input type="text" placeholder="User name"/>
-            </div>
-
-            <br/>
-
-            <div class="form-group inputFields">
-                <label class="inputForLogin">Password:</label>
-                <input type="password" placeholder="password"/>
-            </div>
-
-            <br/>
-
-            <div class="form-group">
-                <div class="row">
-                    <div class="col-6">
-                        <p class="action">
-                            <button class="btn btn-outline-dark" type="submit">Login</button>
-                        </p>
+<AuthorizeView>
+    <NotAuthorized>
+        <div class="row page-background-class justify-content-center align-items-center">
+            <div class="col-4 overflow-auto">
+                <div class="loginBox">
+                    <div class="form-group">
+                        <h1 id="WelcomeMessage">Welcome to Family Blazor</h1>
                     </div>
-                    <div class="col-6">
-                        <p class="action">
-                            <button class="btn btn-outline-dark" type="submit" @onclick="@(() => CreateUser())">Create User</button>
-                        </p>
+
+                    <br/>
+
+                    <div class="form-group inputFields">
+                        <label class="inputForLogin">User name:</label>
+                        <input type="text" placeholder="User name" @bind-value="userName"/>
                     </div>
+
+                    <br/>
+
+                    <div class="form-group inputFields">
+                        <label class="inputForLogin">Password:</label>
+                        <input type="password" placeholder="password" @bind-value="password"/>
+                    </div>
+
+                    <br/>
+
+                    <div class="form-group">
+                        @errorMessage
+                    </div>
+
+                    <br/>
+
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-6">
+                                <p class="action">
+                                    <button class="btn btn-outline-dark" type="submit" @onclick="PerformLogin">Login</button>
+                                </p>
+                            </div>
+                            <div class="col-6">
+                                <p class="action">
+                                    <button class="btn btn-outline-dark" type="submit" @onclick="@(() => ToCreateUserPage())">Create User</button>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <br/>
+
                 </div>
             </div>
-
-            <br/>
-
         </div>
-    </div>
-</div>
+    </NotAuthorized>
+    <Authorized>
+        <div class="form-group">
+            <button class="btn btn-outline-dark" type="submit" @onclick="PerformLogout">Log out</button>
+        </div>
+    </Authorized>
+</AuthorizeView>
 
 @code 
 {
-    private IList<User> users;
+    private string userName;
+    private string password;
+    private string errorMessage;
 
-    protected override async Task OnInitializedAsync()
+    public async Task PerformLogin()
     {
-        
+        errorMessage = "";
+        try
+        {
+            ((CustomAuthenticationStateProvider) AuthenticationStateProvider).ValidateLogin(userName, password);
+            NavigationManager.NavigateTo("/Family");
+            userName = "";
+            password = "";
+        }
+        catch (Exception e)
+        {
+            errorMessage = e.Message;
+        }
     }
 
-    private void CreateUser()
+    public async Task PerformLogout()
+    {
+        errorMessage = "";
+        userName = "";
+        password = "";
+        try
+        {
+            ((CustomAuthenticationStateProvider) AuthenticationStateProvider).Logout();
+            NavigationManager.NavigateTo("/");
+        }
+        catch (Exception e)
+        {
+        }
+    }
+
+    private void ToCreateUserPage()
     {
         NavigationManager.NavigateTo("/CreateUser");
     }
