@@ -83,21 +83,21 @@ using FamilyBlazorWebApp.Shared;
 #line hidden
 #nullable disable
 #nullable restore
-#line 2 "C:\Users\kkash\RiderProjects\DNP1Assignment1\FamilyBlazorWebApp\Pages\Adults.razor"
+#line 2 "C:\Users\kkash\RiderProjects\DNP1Assignment1\FamilyBlazorWebApp\Pages\AddAdults.razor"
 using Models;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 3 "C:\Users\kkash\RiderProjects\DNP1Assignment1\FamilyBlazorWebApp\Pages\Adults.razor"
+#line 3 "C:\Users\kkash\RiderProjects\DNP1Assignment1\FamilyBlazorWebApp\Pages\AddAdults.razor"
 using Data;
 
 #line default
 #line hidden
 #nullable disable
-    [Microsoft.AspNetCore.Components.RouteAttribute("/Adults")]
-    public partial class Adults : Microsoft.AspNetCore.Components.ComponentBase
+    [Microsoft.AspNetCore.Components.RouteAttribute("/AddAdults")]
+    public partial class AddAdults : Microsoft.AspNetCore.Components.ComponentBase
     {
         #pragma warning disable 1998
         protected override void BuildRenderTree(Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder __builder)
@@ -105,32 +105,18 @@ using Data;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 92 "C:\Users\kkash\RiderProjects\DNP1Assignment1\FamilyBlazorWebApp\Pages\Adults.razor"
+#line 102 "C:\Users\kkash\RiderProjects\DNP1Assignment1\FamilyBlazorWebApp\Pages\AddAdults.razor"
  
-    private IList<Adult> adultsToShow;
-    private IList<Adult> allAdults;
+    //TODO figure out why adding new adult is not working
+    private Adult newAdult = new Adult();
+    private Job newJob = new Job();
 
-    private string? filterByName;
-
-    protected override async Task OnInitializedAsync()
+     private void AddAdult()
     {
-        allAdults = AdultData.GetAdults();
-        adultsToShow = allAdults;
-    }
-
-    private void FilterByPersonName(ChangeEventArgs changeEventArgs)
-    {
-        
-    }
-
-    private void Edit(int id)
-    {
-        NavigationManager.NavigateTo($"Edit/{id}");
-    }
-
-    private void AddAdult()
-    {
-        NavigationManager.NavigateTo("/AddAdult");
+    /*
+        AdultData.AddAdult(newAdult);
+        NavigationManager.NavigateTo("/Adults");
+    */
     }
 
 #line default

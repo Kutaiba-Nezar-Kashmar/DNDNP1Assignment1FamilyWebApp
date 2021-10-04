@@ -1,0 +1,114 @@
+﻿@page "/AddAdults"
+@using Models
+@using Data
+@inject IAdultData AdultData
+@inject NavigationManager NavigationManager
+
+<AuthorizeView>
+    <NotAuthorized Context="Auth">
+        <h3>Please <a href="Login"> login</a> in order to view this page</h3>
+    </NotAuthorized>
+    <Authorized Context="Auth">
+        <EditForm Model="@newAdult" OnValidSubmit="@AddAdult">
+            <DataAnnotationsValidator/>
+            <ValidationSummary/>
+            <div class="row justify-content-center align-items-center">
+                <div class="col-6 overflow-auto">
+                    <div class="createUserBox">
+                        <div class="form-group">
+                            <h4>Please fill the fields:</h4>
+                        </div>
+                        
+                        <br/>
+                        
+                        <div class="form-group">
+                            <input type="number" placeholder="ID" @bind-value="newAdult.Id"/>
+                        </div>
+                        
+                        <br/>
+                        
+                        <div class="form-group">
+                            <input type="text" placeholder="First Name" @bind-value="newAdult.FirstName"/>
+                        </div>
+                        
+                        <br/>
+                        
+                        <div class="form-group">
+                            <input type="text" placeholder="Last Name" @bind-value="newAdult.LastName"/>
+                        </div>
+                        
+                        <br/>
+                        
+                        <div class="form-group">
+                            <input type="text" placeholder="Color" @bind-value="newAdult.HairColor"/>
+                        </div>
+                        
+                        <br/>
+                        
+                        <div class="form-group">
+                            <input type="text" placeholder="Eye Color" @bind-value="newAdult.EyeColor">
+                        </div>
+                        
+                        <br/>
+                        
+                        <div class="form-group">
+                            <input type="number" placeholder="Age" @bind-value="newAdult.Age"/>
+                        </div>
+                        
+                        <br/>
+
+                        <div class="form-group">
+                            <input type="number" placeholder="Weight" step="any" @bind-value="newAdult.Weight"/>
+                        </div>
+                        
+                        <br/>
+                        
+                        <div class="form-group">
+                            <input type="number" placeholder="Height" step="any" @bind-value="newAdult.Height"/>
+                        </div>
+                        
+                        <br/>
+                        
+                        <div class="form-group">
+                            <input type="text" placeholder="Sex" @bind-value="newAdult.Sex"/>
+                        </div>
+                        
+                        <br/>
+                        
+                        <div class="form-group">
+                            <input type="text" placeholder="Job title" @bind-value="newJob.JobTitle"/>
+                        </div>
+                        
+                        <br/>
+                        
+                        <div class="form-group">
+                           <input type="number" placeholder="Salary" step="any" @bind-value="newJob.Salary"/> 
+                        </div>
+                        
+                        <br/>
+                        
+                        <div class="form-group">
+                            <button class="btn btn-outline-dark" type="submit">Save Changes</button>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </EditForm>
+    </Authorized>
+</AuthorizeView>
+
+@code 
+{
+    //TODO figure out why adding new adult is not working
+    private Adult newAdult = new Adult();
+    private Job newJob = new Job();
+
+     private void AddAdult()
+    {
+    /*
+        AdultData.AddAdult(newAdult);
+        NavigationManager.NavigateTo("/Adults");
+    */
+    }
+}

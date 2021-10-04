@@ -61,5 +61,9 @@ C:\Users\kkash\RiderProjects\DNP1Assignment1\FamilyBlazorWebApp\obj\Debug\net5.0
 C:\Users\kkash\RiderProjects\DNP1Assignment1\FamilyBlazorWebApp\obj\Debug\net5.0\Razor\Pages\Family.razor.g.cs
 C:\Users\kkash\RiderProjects\DNP1Assignment1\FamilyBlazorWebApp\obj\Debug\net5.0\RazorDeclaration\Pages\Adults.razor.g.cs
 C:\Users\kkash\RiderProjects\DNP1Assignment1\FamilyBlazorWebApp\obj\Debug\net5.0\Razor\Pages\Adults.razor.g.cs
-C:\Users\kkash\RiderProjects\DNP1Assignment1\FamilyBlazorWebApp\bin\Debug\net5.0\adults.json
 C:\Users\kkash\RiderProjects\DNP1Assignment1\FamilyBlazorWebApp\bin\Debug\net5.0\families.json
+C:\Users\kkash\RiderProjects\DNP1Assignment1\FamilyBlazorWebApp\obj\Debug\net5.0\RazorDeclaration\Pages\Edit.razor.g.cs
+C:\Users\kkash\RiderProjects\DNP1Assignment1\FamilyBlazorWebApp\obj\Debug\net5.0\Razor\Pages\Edit.razor.g.cs
+C:\Users\kkash\RiderProjects\DNP1Assignment1\FamilyBlazorWebApp\obj\Debug\net5.0\RazorDeclaration\Pages\AddAdults.razor.g.cs
+C:\Users\kkash\RiderProjects\DNP1Assignment1\FamilyBlazorWebApp\obj\Debug\net5.0\Razor\Pages\AddAdults.razor.g.cs
+C:\Users\kkash\RiderProjects\DNP1Assignment1\FamilyBlazorWebApp\bin\Debug\net5.0\adults.json

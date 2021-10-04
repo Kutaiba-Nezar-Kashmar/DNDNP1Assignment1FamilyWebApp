@@ -1,0 +1,112 @@
+﻿@page "/Edit/{Id:int}"
+@using Data
+@using Models
+@inject IAdultData AdultData
+@inject NavigationManager NavigationManager
+
+<AuthorizeView>
+    <NotAuthorized Context="Auth">
+        <h3>You have to <a href="Login">login</a> in order to view this page!!!</h3>
+    </NotAuthorized>
+    <Authorized Context="Auth">
+        <h3>Edit adult with id: @Id</h3>
+
+        @if (adultToEdit == null)
+        {
+            <em>Adult is not found!!!</em>
+        }
+        else
+        {
+            <EditForm Model="@adultToEdit" OnValidSubmit="@Save">
+                <DataAnnotationsValidator/>
+                <ValidationSummary/>
+                <div class="form-group">
+                    <input type="number" placeholder="ID" @bind-value="adultToEdit.Id"/>
+                </div>
+
+                <br/>
+
+                <div class="form-group">
+                    <input type="text" placeholder="First Name" @bind-value="adultToEdit.FirstName"/>
+                </div>
+
+                <br/>
+
+                <div class="form-group">
+                    <input type="text" placeholder="Last Name" @bind-value="adultToEdit.LastName"/>
+                </div>
+
+                <br/>
+
+                <div class="form-group">
+                    <input type="text" placeholder="Hair Color" @bind-value="adultToEdit.HairColor"/>
+                </div>
+
+                <br/>
+
+                <div class="form-group">
+                    <input type="text" placeholder="Eye Color" @bind-value="adultToEdit.EyeColor"/>
+                </div>
+
+                <br/>
+
+                <div class="form-group">
+                    <input type="number" placeholder="Age" @bind-value="adultToEdit.Age"/>
+                </div>
+
+                <br/>
+
+                <div class="form-group">
+                    <input type="number" placeholder="Weight" step="any" @bind-value="adultToEdit.Weight"/>
+                </div>
+
+                <br/>
+
+                <div class="form-group">
+                    <input type="number" placeholder="Height" step="any" @bind-value="adultToEdit.Height"/>
+                </div>
+
+                <br/>
+
+                <div class="form-group">
+                    <input type="text" placeholder="Sex" @bind-value="adultToEdit.Sex"/>
+                </div>
+
+                <br/>
+
+                <div class="form-group">
+                    <input type="text" placeholder="Job Title" @bind-value="adultToEdit.JobTitle.JobTitle"/>
+                </div>
+
+                <br/>
+
+                <div class="form-group">
+                    <input type="number" placeholder="Salary" @bind-value="adultToEdit.JobTitle.Salary"/>
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-outline-dark" type="submit">Save Changes</button>
+                </div>
+            </EditForm>
+
+        }
+    </Authorized>
+</AuthorizeView>
+
+@code 
+{
+    [Parameter]
+    public int Id { get; set; }
+
+    private Adult adultToEdit;
+
+    protected override async Task OnInitializedAsync()
+    {
+        adultToEdit = AdultData.get(Id);
+    }
+
+    private void Save()
+    {
+        AdultData.UpdateAdult(adultToEdit);
+        NavigationManager.NavigateTo("/Adults");
+    }
+}

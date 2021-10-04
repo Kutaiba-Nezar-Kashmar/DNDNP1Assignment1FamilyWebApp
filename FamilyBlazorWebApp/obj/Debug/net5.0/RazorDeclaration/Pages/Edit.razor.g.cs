@@ -83,21 +83,21 @@ using FamilyBlazorWebApp.Shared;
 #line hidden
 #nullable disable
 #nullable restore
-#line 2 "C:\Users\kkash\RiderProjects\DNP1Assignment1\FamilyBlazorWebApp\Pages\Adults.razor"
-using Models;
-
-#line default
-#line hidden
-#nullable disable
-#nullable restore
-#line 3 "C:\Users\kkash\RiderProjects\DNP1Assignment1\FamilyBlazorWebApp\Pages\Adults.razor"
+#line 2 "C:\Users\kkash\RiderProjects\DNP1Assignment1\FamilyBlazorWebApp\Pages\Edit.razor"
 using Data;
 
 #line default
 #line hidden
 #nullable disable
-    [Microsoft.AspNetCore.Components.RouteAttribute("/Adults")]
-    public partial class Adults : Microsoft.AspNetCore.Components.ComponentBase
+#nullable restore
+#line 3 "C:\Users\kkash\RiderProjects\DNP1Assignment1\FamilyBlazorWebApp\Pages\Edit.razor"
+using Models;
+
+#line default
+#line hidden
+#nullable disable
+    [Microsoft.AspNetCore.Components.RouteAttribute("/Edit/{Id:int}")]
+    public partial class Edit : Microsoft.AspNetCore.Components.ComponentBase
     {
         #pragma warning disable 1998
         protected override void BuildRenderTree(Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder __builder)
@@ -105,32 +105,22 @@ using Data;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 92 "C:\Users\kkash\RiderProjects\DNP1Assignment1\FamilyBlazorWebApp\Pages\Adults.razor"
+#line 96 "C:\Users\kkash\RiderProjects\DNP1Assignment1\FamilyBlazorWebApp\Pages\Edit.razor"
  
-    private IList<Adult> adultsToShow;
-    private IList<Adult> allAdults;
+    [Parameter]
+    public int Id { get; set; }
 
-    private string? filterByName;
+    private Adult adultToEdit;
 
     protected override async Task OnInitializedAsync()
     {
-        allAdults = AdultData.GetAdults();
-        adultsToShow = allAdults;
+        adultToEdit = AdultData.get(Id);
     }
 
-    private void FilterByPersonName(ChangeEventArgs changeEventArgs)
+    private void Save()
     {
-        
-    }
-
-    private void Edit(int id)
-    {
-        NavigationManager.NavigateTo($"Edit/{id}");
-    }
-
-    private void AddAdult()
-    {
-        NavigationManager.NavigateTo("/AddAdult");
+        AdultData.UpdateAdult(adultToEdit);
+        NavigationManager.NavigateTo("/Adults");
     }
 
 #line default

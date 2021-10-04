@@ -2,8 +2,7 @@
 @using Models
 @using Data
 @inject IAdultData AdultData
-
-<h3>Adult</h3>
+@inject NavigationManager NavigationManager
 
 @if (adultsToShow == null)
 {
@@ -16,30 +15,49 @@ else if (!adultsToShow.Any())
     <p>
         <em>No people to show. Please add som.</em>
     </p>
-}
-else
-{
-    <table class="table">
-        <thead>
-        <tr>
-            <th>Person ID</th>
-            <th>First Name</th>
-            <th>Last Name</th>
-            <th>Job Title</th>
-            <th>Salary</th>
-            <th>Hair Color</th>
-            <th>Eye Color</th>
-            <th>Age</th>
-            <th>Weight</th>
-            <th>Height</th>
-            <th>Sex</th>
-        </tr>
-        </thead>
-        <tbody>
+        }
+        else
+        {
+            <AuthorizeView>
+                <NotAuthorized>
+                    <h3>Please <a href="Login"> login</a> if you wish to change data</h3>
+                </NotAuthorized>
+            </AuthorizeView>
+            <table class="table">
+            <thead>
+            <tr>
+                <AuthorizeView>
+                    <Authorized>
+                        <th>Person ID</th>
+                    </Authorized>
+                </AuthorizeView>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Job Title</th>
+                <th>Salary</th>
+                <th>Hair Color</th>
+                <th>Eye Color</th>
+                <th>Age</th>
+                <th>Weight</th>
+                <th>Height</th>
+                <th>Sex</th>
+                <AuthorizeView>
+                    <Authorized>
+                        <th>Edit</th>
+                        <th>Remove</th>
+                    </Authorized>
+                </AuthorizeView>
+            </tr>
+            </thead>
+            <tbody>
             @foreach (var adult in adultsToShow)
             {
                 <tr>
-                    <td>@adult.Id</td>
+                    <AuthorizeView>
+                        <Authorized>
+                            <td>@adult.Id</td>
+                        </Authorized>
+                    </AuthorizeView>
                     <td>@adult.FirstName</td>
                     <td>@adult.LastName</td>
                     <td>@adult.JobTitle.JobTitle</td>
@@ -50,11 +68,25 @@ else
                     <td>@adult.Weight</td>
                     <td>@adult.Height</td>
                     <td>@adult.Sex</td>
+                    <AuthorizeView>
+                        <Authorized>
+                            <td>
+                                <button @onclick="@(() => Edit(adult.Id))">
+                                    <i class="oi oi-pencil"/>
+                                </button>
+                            </td>
+                            <td>
+                                <button>
+                                    <i class="oi oi-trash"/>
+                                </button>
+                            </td>
+                        </Authorized>
+                    </AuthorizeView>
                 </tr>
             }
-        </tbody>
-    </table>
-}
+            </tbody>
+        </table>
+        }
 
 @code 
 {
@@ -73,6 +105,14 @@ else
     {
         
     }
-    
-    
+
+    private void Edit(int id)
+    {
+        NavigationManager.NavigateTo($"Edit/{id}");
+    }
+
+    private void AddAdult()
+    {
+        NavigationManager.NavigateTo("/AddAdult");
+    }
 }
