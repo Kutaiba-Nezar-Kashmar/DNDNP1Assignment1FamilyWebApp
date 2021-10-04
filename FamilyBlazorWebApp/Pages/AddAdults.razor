@@ -20,10 +20,10 @@
                         </div>
                         
                         <br/>
-                        
-                        <div class="form-group">
+                        @*The id should be added automatically (look AdultData::AdAdult(Adult adult))*@
+                        @*<div class="form-group">
                             <input type="number" placeholder="ID" @bind-value="newAdult.Id"/>
-                        </div>
+                        </div>*@
                         
                         <br/>
                         
@@ -74,17 +74,17 @@
                         </div>
                         
                         <br/>
-                        
+                        @*the bug starts here*@
                         <div class="form-group">
-                            <input type="text" placeholder="Job title" @bind-value="newJob.JobTitle"/>
+                            <input type="text" placeholder="Job title" @bind-value="newAdult.JobTitle.JobTitle"/>
                         </div>
                         
                         <br/>
                         
                         <div class="form-group">
-                           <input type="number" placeholder="Salary" step="any" @bind-value="newJob.Salary"/> 
+                           <input type="number" placeholder="Salary" step="any" @bind-value="newAdult.JobTitle.Salary"/> 
                         </div>
-                        
+                        @*the bug ends here*@
                         <br/>
                         
                         <div class="form-group">
@@ -102,13 +102,11 @@
 {
     //TODO figure out why adding new adult is not working
     private Adult newAdult = new Adult();
-    private Job newJob = new Job();
 
      private void AddAdult()
     {
-    /*
-        AdultData.AddAdult(newAdult);
+         AdultData.AddAdult(newAdult);
         NavigationManager.NavigateTo("/Adults");
-    */
+    
     }
 }

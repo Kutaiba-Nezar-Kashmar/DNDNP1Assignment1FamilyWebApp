@@ -109,14 +109,12 @@ using Data;
  
     //TODO figure out why adding new adult is not working
     private Adult newAdult = new Adult();
-    private Job newJob = new Job();
 
      private void AddAdult()
     {
-    /*
-        AdultData.AddAdult(newAdult);
+         AdultData.AddAdult(newAdult);
         NavigationManager.NavigateTo("/Adults");
-    */
+    
     }
 
 #line default

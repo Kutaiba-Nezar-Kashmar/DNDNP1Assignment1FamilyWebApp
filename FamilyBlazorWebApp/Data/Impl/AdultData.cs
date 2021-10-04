@@ -17,7 +17,7 @@ namespace Data.Impl
         {
             if (!File.Exists(adultFile))
             {
-                new FileContext();
+               // new FileContext();
             }
             else
             {
@@ -42,9 +42,9 @@ namespace Data.Impl
 
         public void RemoveAdult(int adultId)
         {
-            /*Adult adultToRemove = adults.First(a => a.Id == adultId);
+            Adult adultToRemove = adults.First(a => a.Id == adultId);
             adults.Remove(adultToRemove);
-            WriteTodosToFile();*/
+            WriteTodosToFile();
         }
 
         public void UpdateAdult(Adult adult)
