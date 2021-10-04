@@ -113,7 +113,7 @@ using Authentication;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 70 "C:\Users\kkash\RiderProjects\DNP1Assignment1\FamilyBlazorWebApp\Pages\Login.razor"
+#line 74 "C:\Users\kkash\RiderProjects\DNP1Assignment1\FamilyBlazorWebApp\Pages\Login.razor"
  
     private string userName;
     private string password;
@@ -125,7 +125,7 @@ using Authentication;
         try
         {
             ((CustomAuthenticationStateProvider) AuthenticationStateProvider).ValidateLogin(userName, password);
-            NavigationManager.NavigateTo("/Family");
+            NavigationManager.NavigateTo("/Adults");
             userName = "";
             password = "";
         }
@@ -149,7 +149,7 @@ using Authentication;
         {
         }
     }
-
+    
     private void ToCreateUserPage()
     {
         NavigationManager.NavigateTo("/CreateUser");

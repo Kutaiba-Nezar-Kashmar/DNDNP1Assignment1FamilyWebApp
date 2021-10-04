@@ -17,6 +17,10 @@
                     </div>
 
                     <br/>
+                    
+                    <div><h3>Please login or <a href="Adults">continue as a guest</a></h3></div>
+                    
+                    <br/>
 
                     <div class="form-group inputFields">
                         <label class="inputForLogin">User name:</label>
@@ -47,7 +51,7 @@
                             </div>
                             <div class="col-6">
                                 <p class="action">
-                                    <button class="btn btn-outline-dark" type="submit" @onclick="@(() => ToCreateUserPage())">Create User</button>
+                                    <button class="btn btn-outline-dark" type="submit" @onclick="ToCreateUserPage">Create User</button>
                                 </p>
                             </div>
                         </div>
@@ -78,7 +82,7 @@
         try
         {
             ((CustomAuthenticationStateProvider) AuthenticationStateProvider).ValidateLogin(userName, password);
-            NavigationManager.NavigateTo("/Family");
+            NavigationManager.NavigateTo("/Adults");
             userName = "";
             password = "";
         }
@@ -102,7 +106,7 @@
         {
         }
     }
-
+    
     private void ToCreateUserPage()
     {
         NavigationManager.NavigateTo("/CreateUser");
