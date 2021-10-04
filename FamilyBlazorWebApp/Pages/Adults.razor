@@ -76,7 +76,7 @@ else if (!adultsToShow.Any())
                                 </button>
                             </td>
                             <td>
-                                <button>
+                                <button @onclick="@(() => RemoveAdult(adult.Id))">
                                     <i class="oi oi-trash"/>
                                 </button>
                             </td>
@@ -111,8 +111,11 @@ else if (!adultsToShow.Any())
         NavigationManager.NavigateTo($"Edit/{id}");
     }
 
-    private void AddAdult()
+    private void RemoveAdult(int adultId)
     {
-        NavigationManager.NavigateTo("/AddAdult");
+        Adult adultToRemove = allAdults.First(a => a.Id == adultId);
+        AdultData.RemoveAdult(adultId);
+        allAdults.Remove(adultToRemove);
+        adultsToShow.Remove(adultToRemove);
     }
 }

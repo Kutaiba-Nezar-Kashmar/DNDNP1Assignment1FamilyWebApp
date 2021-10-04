@@ -128,9 +128,12 @@ using Data;
         NavigationManager.NavigateTo($"Edit/{id}");
     }
 
-    private void AddAdult()
+    private void RemoveAdult(int adultId)
     {
-        NavigationManager.NavigateTo("/AddAdult");
+        Adult adultToRemove = allAdults.First(a => a.Id == adultId);
+        AdultData.RemoveAdult(adultId);
+        allAdults.Remove(adultToRemove);
+        adultsToShow.Remove(adultToRemove);
     }
 
 #line default
