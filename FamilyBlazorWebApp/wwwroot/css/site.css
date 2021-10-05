@@ -10,29 +10,53 @@ html, body {
 /**/
 .page-background-class
 {
-    background-image: url("../Images/background-login.jpg");
+    background-image: url("../Images/back1.jpg");
     width:100vw;
     height:100vh;
     box-sizing:border-box;
 }
+
 .loginBox
 {
-    border: solid black;
-    background-color: white;
+    border: solid black 1px;
+    background-image: url("../Images/back2.png");
     width: auto;
 }
 #WelcomeMessage
 {
     font-family: "Lucida Handwriting";
     position: center;
+    color: white;
 }
-.inputForLogin
-{
-    font-family: "Times New Roman";
-}
+
 .inputFields
 {
-    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#loginButton
+{
+    width: 240px;
+    height: 60px;
+}
+#CreatButton
+{
+    width: 240px;
+    height: 60px;
+}
+.loginActions
+{
+    display: flex;
+    justify-content: space-evenly;
+}
+
+#loginActions
+{
+    display: flex;
+    align-items: center;
+    margin-left: 45px;
 }
 /**/
 a, .btn-link {

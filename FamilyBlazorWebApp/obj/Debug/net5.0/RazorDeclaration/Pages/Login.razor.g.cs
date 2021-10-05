@@ -113,7 +113,7 @@ using Authentication;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 74 "C:\Users\kkash\RiderProjects\DNP1Assignment1\FamilyBlazorWebApp\Pages\Login.razor"
+#line 54 "C:\Users\kkash\RiderProjects\DNP1Assignment1\FamilyBlazorWebApp\Pages\Login.razor"
  
     private string userName;
     private string password;
