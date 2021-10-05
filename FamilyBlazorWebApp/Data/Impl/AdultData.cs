@@ -63,7 +63,7 @@ namespace Data.Impl
             WriteTodosToFile();
         }
 
-        public Adult get(int adultId)
+        public Adult Get(int adultId)
         {
             return adults.FirstOrDefault(a => a.Id == adultId);
         }

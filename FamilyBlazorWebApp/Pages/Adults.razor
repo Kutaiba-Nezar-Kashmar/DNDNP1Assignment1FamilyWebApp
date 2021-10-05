@@ -23,6 +23,9 @@ else if (!adultsToShow.Any())
                     <h3>Please <a href="Login"> login</a> if you wish to change data</h3>
                 </NotAuthorized>
             </AuthorizeView>
+            <div class="searchBox">
+                <input type="text" placeholder="Search" @oninput="((arg) => FilterByPersonName(arg))"/>
+            </div>
             <table class="table">
             <thead>
             <tr>
@@ -94,7 +97,7 @@ else if (!adultsToShow.Any())
     private IList<Adult> allAdults;
 
     private string? filterByName;
-
+    
     protected override async Task OnInitializedAsync()
     {
         allAdults = AdultData.GetAdults();
@@ -103,7 +106,21 @@ else if (!adultsToShow.Any())
 
     private void FilterByPersonName(ChangeEventArgs changeEventArgs)
     {
-        
+        filterByName = null;
+        try
+        {
+            adultsToShow = allAdults.Where(a => ((a.FirstName + "" + a.LastName).ToLower()).Contains(changeEventArgs.Value.ToString().ToLower())).ToList();
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
+    /*
+         * foreach(var adult in allAdults)
+         *use $"{firstName} ${lastname}.Contain" to search for an adult
+         * 
+         */
     }
 
     private void Edit(int id)

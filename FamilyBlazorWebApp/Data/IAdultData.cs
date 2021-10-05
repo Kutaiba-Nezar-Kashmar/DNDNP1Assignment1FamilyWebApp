@@ -9,6 +9,6 @@ namespace Data
         void AddAdult(Adult adult);
         void RemoveAdult(int adultId);
         void UpdateAdult(Adult adult);
-        Adult get(int adultId);
+        Adult Get(int adultId);
     }
 }

@@ -114,7 +114,7 @@ using Models;
 
     protected override async Task OnInitializedAsync()
     {
-        adultToEdit = AdultData.get(Id);
+        adultToEdit = AdultData.Get(Id);
     }
 
     private void Save()

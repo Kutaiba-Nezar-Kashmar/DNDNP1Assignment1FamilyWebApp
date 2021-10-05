@@ -13,8 +13,8 @@
             <DataAnnotationsValidator/>
             <ValidationSummary/>
             <div class="row justify-content-center align-items-center">
-                <div class="col-6 overflow-auto">
-                    <div class="createUserBox">
+                <div class="col-6">
+                    <div class="createUserBox overflow-auto">
                         <div class="form-group">
                             <h4>Please fill the fields:</h4>
                         </div>
@@ -82,7 +82,7 @@
                         <br/>
                         
                         <div class="form-group">
-                           <input type="number" placeholder="Salary" step="any" @bind-value="newAdult.JobTitle.Salary"/> 
+                           <input type="number" placeholder="Salary" @bind-value="newAdult.JobTitle.Salary"/> 
                         </div>
                         @*the bug ends here*@
                         <br/>
@@ -100,8 +100,8 @@
 
 @code 
 {
-    //TODO figure out why adding new adult is not working
-    private Adult newAdult = new Adult();
+    //JobTitle = new Job() to create new Job and solve the NullPointer 
+    private Adult newAdult = new Adult(){JobTitle = new Job()};
 
      private void AddAdult()
     {

@@ -105,13 +105,13 @@ using Data;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 92 "C:\Users\kkash\RiderProjects\DNP1Assignment1\FamilyBlazorWebApp\Pages\Adults.razor"
+#line 95 "C:\Users\kkash\RiderProjects\DNP1Assignment1\FamilyBlazorWebApp\Pages\Adults.razor"
  
     private IList<Adult> adultsToShow;
     private IList<Adult> allAdults;
 
     private string? filterByName;
-
+    
     protected override async Task OnInitializedAsync()
     {
         allAdults = AdultData.GetAdults();
@@ -120,7 +120,21 @@ using Data;
 
     private void FilterByPersonName(ChangeEventArgs changeEventArgs)
     {
-        
+        filterByName = null;
+        try
+        {
+            adultsToShow = allAdults.Where(a => ((a.FirstName + "" + a.LastName).ToLower()).Contains(changeEventArgs.Value.ToString().ToLower())).ToList();
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
+    /*
+         * foreach(var adult in allAdults)
+         *use $"{firstName} ${lastname}.Contain" to search for an adult
+         * 
+         */
     }
 
     private void Edit(int id)

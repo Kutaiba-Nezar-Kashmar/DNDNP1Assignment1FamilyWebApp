@@ -107,8 +107,8 @@ using Data;
 #nullable restore
 #line 102 "C:\Users\kkash\RiderProjects\DNP1Assignment1\FamilyBlazorWebApp\Pages\AddAdults.razor"
  
-    //TODO figure out why adding new adult is not working
-    private Adult newAdult = new Adult();
+    //JobTitle = new Job() to create new Job and solve the NullPointer 
+    private Adult newAdult = new Adult(){JobTitle = new Job()};
 
      private void AddAdult()
     {
