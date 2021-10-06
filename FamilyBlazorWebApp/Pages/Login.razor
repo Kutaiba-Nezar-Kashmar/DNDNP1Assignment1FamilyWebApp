@@ -9,38 +9,18 @@
 
 <AuthorizeView>
     <NotAuthorized>
-        <div class="row  page-background-class justify-content-center align-items-center">
-            <div class="col-4 overflow-auto">
-                <div class="loginBox">
-                    <div class="form-group">
-                        <h1 id="WelcomeMessage">Welcome to Family Blazor</h1>
-                    </div>
-
-                    <br/>
-
-                    <div class="form-group inputFields">
-                        <input type="text" placeholder="User name" required="required" size="60" @bind-value="userName"/>
-                    </div>
-
-                    <br/>
-
-                    <div class="form-group inputFields">
-                        <input type="password" placeholder="password" required="required" size="60" @bind-value="password"/>
-                    </div>
-
-                    <div class="form-group">
-                        @errorMessage
-                    </div>
-
-                    <div class="form-group loginActions">
-                        <button class="btn btn-outline-dark" id="loginButton" type="submit" size="40" @onclick="PerformLogin">Login</button>
-                        <button class="btn btn-outline-dark" id="CreatButton" type="submit" size="40" @onclick="ToCreateUserPage">Create User</button>
-                    </div>
-                    <div class="form-group" id="loginActions">
-                        <p>Or<br/><a href="Adults">continue as a guest</a></p>
-                    </div>
+        <div class="LogPageDis">
+            <p class="WelcomeMessage" align="center">Sign in</p>
+            <form class="formDis">
+                <input class="inputField" type="text" placeholder="User name" required="required" @bind-value="userName"/>
+                <input class="inputField" type="password" placeholder="password" required="required" @bind-value="password"/>
+                <p class="errorMessage">@errorMessage</p>
+                <div class="buttonsDis">
+                    <a class="submit" @onclick="PerformLogin">Sign in</a>
+                    <a class="submit" @onclick="ToCreateUserPage">Sign up</a>
                 </div>
-            </div>
+                <p class="guest" align="center"><a href="Adults">Continue as aguest</a></p>
+            </form>
         </div>
     </NotAuthorized>
     <Authorized>
