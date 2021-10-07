@@ -1,0 +1,77 @@
+﻿@page "/Family"
+@using Models
+@using Data
+@inject IFamilyData FamilyData
+@inject NavigationManager NavigationManager
+
+@if (familiesToShow == null)
+{
+    <p>
+        <em>Loading</em>
+    </p>
+}
+else if (!familiesToShow.Any())
+{
+    <p>
+        <em style="color: white">No Families to show. Please add som.</em>
+    </p>
+}
+else
+{
+    <br/>
+    <div class="familyTableBox">
+        <div class="treetable d-flex w-100">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th scope="col">Family Id</th>
+                    <th scope="col">Street Number</th>
+                    <th scope="col">House Number</th>
+                </tr>
+                </thead>
+                <tbody>
+                @foreach (var family in familiesToShow)
+                {
+                    <tr data-depth="1">
+                        <td>@family.Id</td>
+                        <td>@family.StreetName</td>
+                        <td>@family.HouseNumber</td>
+                    </tr>
+                    <tr data-depth="2">
+                        <td>Adults</td>
+                        @foreach (var adult in adults)
+                        {
+                            <td>Adult ID: @family.Adults.FirstOrDefault(a => a.Id == adult.Id)</td>
+                            <td>First Name: @family.Adults.FirstOrDefault(a => a.FirstName == adult.FirstName)</td>
+                            <td>Last Name: @family.Adults.FirstOrDefault(a => a.LastName == adult.LastName)</td>
+                            <td>Hair Color: @family.Adults.FirstOrDefault(a => a.HairColor == adult.HairColor)</td>
+                            <td>EyeColor: @family.Adults.FirstOrDefault(a => a.EyeColor == adult.EyeColor)</td>
+                            <td>Age: @family.Adults.FirstOrDefault(a => a.Age == adult.Age)</td>
+                            <td>Wight: @family.Adults.FirstOrDefault(a => a.Weight == adult.Weight)</td>
+                            <td>Height: @family.Adults.FirstOrDefault(a => a.Height == adult.Height)</td>
+                            <td>Sex: @family.Adults.FirstOrDefault(a => a.Sex == adult.Sex)</td>
+                            <td>Job Title: @family.Adults.FirstOrDefault(a => a.JobTitle.JobTitle == adult.JobTitle.JobTitle)</td>
+                            <td>Salary: @family.Adults.FirstOrDefault(a => a.JobTitle.Salary == adult.JobTitle.Salary)</td>
+                        }
+                    </tr>
+                }
+                </tbody>
+            </table>
+        </div>
+    </div>
+       
+}
+
+@code 
+{
+    private IList<Family> familiesToShow;
+    private IList<Family> allFamilies;
+    private IList<Adult> adults;
+
+    protected override async Task OnInitializedAsync()
+    {
+        allFamilies = FamilyData.GetFamilies();
+        familiesToShow = allFamilies;
+        adults = familiesToShow.FirstOrDefault().Adults;
+    }
+}

@@ -6,44 +6,62 @@
 
 <AuthorizeView>
     <NotAuthorized Context="Auth">
-        <h3>Please <a href="Login"> login</a> in order to view this page</h3>
+        <h3 class="warning">Please <a href="Login"> login</a> in order to view this page</h3>
     </NotAuthorized>
     <Authorized Context="Auth">
         <EditForm Model="@newAdult" OnValidSubmit="@AddAdult">
             <DataAnnotationsValidator/>
             <ValidationSummary/>
-            <div>
-                <h4>Please fill the fields:</h4>
+            <div class="addAdultPage">
+                <br/>
+                <p class="WelcomeMessageCreate">Please fill the fields:</p>
+                <div class="addBox">
+                    <form class="formDis">
+                        <div class="row">
+                            <div class="col-md-2">
+                                <p>First Name:</p>
+                                <br/>
+                                <br/>
+                                <p>Last Name:</p>
+                                <br/>
+                                <p>Hair Color:</p>
+                                <br/>
+                                <p>Eye Color:</p>
+                                <br/>
+                                <p>Age:</p>
+                                <br/>
+                                <br/>
+                                <p>Weight:</p>
+                                <br/>
+                                <p>Height:</p>
+                                <br/>
+                                <p>Gender:</p>
+                                <br/>
+                                <p>Job Title:</p>
+                                <br/>
+                                <br/>
+                                <p>Salary:</p>
+                                <br/>
+                            </div>
+                            <div class="col-md-10">
+                                <input class="inputField" type="text" placeholder="First Name" @bind-value="newAdult.FirstName"/>
+                                <input class="inputField" type="text" placeholder="Last Name" @bind-value="newAdult.LastName"/>
+                                <input class="inputField" type="text" placeholder="Color" @bind-value="newAdult.HairColor"/>
+                                <input class="inputField" type="text" placeholder="Eye Color" @bind-value="newAdult.EyeColor">
+                                <input class="inputField" type="number" placeholder="Age" min="18" max="100" @bind-value="newAdult.Age"/>
+                                <input class="inputField" type="number" placeholder="Weight" step="any" @bind-value="newAdult.Weight"/>
+                                <input class="inputField" type="number" placeholder="Height" step="any" @bind-value="newAdult.Height"/>
+                                <input class="inputField" type="text" placeholder="Sex" @bind-value="newAdult.Sex"/>
+                                <input class="inputField" type="text" placeholder="Job title" @bind-value="newAdult.JobTitle.JobTitle"/>
+                                <input class="inputField" type="number" placeholder="Salary" @bind-value="newAdult.JobTitle.Salary"/>
+                            </div>
+                        </div>
+                        <div class="addBut">
+                            <a class="submit" type="submit">Save Changes</a>
+                        </div>
+                    </form>
 
-                <input type="text" placeholder="First Name" @bind-value="newAdult.FirstName"/>
-
-
-                <input type="text" placeholder="Last Name" @bind-value="newAdult.LastName"/>
-
-
-                <input type="text" placeholder="Color" @bind-value="newAdult.HairColor"/>
-
-
-                <input type="text" placeholder="Eye Color" @bind-value="newAdult.EyeColor">
-
-
-                <input type="number" placeholder="Age" @bind-value="newAdult.Age"/>
-
-
-                <input type="number" placeholder="Weight" step="any" @bind-value="newAdult.Weight"/>
-
-
-                <input type="number" placeholder="Height" step="any" @bind-value="newAdult.Height"/>
-
-
-                <input type="text" placeholder="Sex" @bind-value="newAdult.Sex"/>
-
-                <input type="text" placeholder="Job title" @bind-value="newAdult.JobTitle.JobTitle"/>
-
-
-                <input type="number" placeholder="Salary" @bind-value="newAdult.JobTitle.Salary"/>
-
-                <button class="btn btn-outline-dark" type="submit">Save Changes</button>
+                </div>
             </div>
         </EditForm>
     </Authorized>

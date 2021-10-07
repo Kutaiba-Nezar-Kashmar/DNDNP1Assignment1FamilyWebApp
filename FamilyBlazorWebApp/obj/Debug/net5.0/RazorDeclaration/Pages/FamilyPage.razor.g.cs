@@ -82,14 +82,47 @@ using FamilyBlazorWebApp.Shared;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 2 "C:\Users\kkash\RiderProjects\DNP1Assignment1\FamilyBlazorWebApp\Pages\FamilyPage.razor"
+using Models;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 3 "C:\Users\kkash\RiderProjects\DNP1Assignment1\FamilyBlazorWebApp\Pages\FamilyPage.razor"
+using Data;
+
+#line default
+#line hidden
+#nullable disable
     [Microsoft.AspNetCore.Components.RouteAttribute("/Family")]
-    public partial class Family : Microsoft.AspNetCore.Components.ComponentBase
+    public partial class FamilyPage : Microsoft.AspNetCore.Components.ComponentBase
     {
         #pragma warning disable 1998
         protected override void BuildRenderTree(Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder __builder)
         {
         }
         #pragma warning restore 1998
+#nullable restore
+#line 66 "C:\Users\kkash\RiderProjects\DNP1Assignment1\FamilyBlazorWebApp\Pages\FamilyPage.razor"
+ 
+    private IList<Family> familiesToShow;
+    private IList<Family> allFamilies;
+    private IList<Adult> adults;
+
+    protected override async Task OnInitializedAsync()
+    {
+        allFamilies = FamilyData.GetFamilies();
+        familiesToShow = allFamilies;
+        adults = familiesToShow.FirstOrDefault().Adults;
+    }
+
+#line default
+#line hidden
+#nullable disable
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private NavigationManager NavigationManager { get; set; }
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private IFamilyData FamilyData { get; set; }
     }
 }
 #pragma warning restore 1591

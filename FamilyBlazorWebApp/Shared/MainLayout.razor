@@ -1,20 +1,26 @@
+@using Authentication
 @inherits LayoutComponentBase
+@inject NavigationManager NavigationManager
+@inject AuthenticationStateProvider AuthenticationStateProvider
+
 <div class="page">
-    <AuthorizeView>
-        <Authorized>
-            <div class="sidebar">
-                <NavMenu/>
-            </div>
-        </Authorized>
-    </AuthorizeView>
+    <div class="sidebar">
+        <NavMenu/>
+    </div>
+
 
     <div class="main">
         <AuthorizeView>
             <NotAuthorized>
-                <div  id="topBar" class="top-row px-4">
+                <div class="top-row px-4 topBar">
                     <a href="/" target="_blank" class="oi oi-account-login"> Login</a>
                 </div>
             </NotAuthorized>
+            <Authorized>
+                <div class="top-row px-4 topBar">
+                    <a href="" target="_blank" class="oi oi-account-logout" @onclick="PerformLogout"> Logout</a>
+                </div>
+            </Authorized>
         </AuthorizeView>
 
         <div class="content px-4">
@@ -22,4 +28,19 @@
         </div>
     </div>
 </div>
+
+@code
+{
+    public async Task PerformLogout()
+    {
+        try
+        {
+            ((CustomAuthenticationStateProvider) AuthenticationStateProvider).Logout();
+            NavigationManager.NavigateTo("/");
+        }
+        catch (Exception e)
+        {
+        }
+    }
+}
 
