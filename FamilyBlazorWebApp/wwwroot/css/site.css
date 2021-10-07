@@ -1,7 +1,6 @@
 @import url('open-iconic/font/css/open-iconic-bootstrap.min.css');
 
 html, body {
-    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
     height:100%;
     width: 100%;
     background: #360033;
@@ -15,7 +14,7 @@ html, body {
 .CrePageDis
 {
     background-color: #FFFFFF;
-    width: 600px;
+    width: 550px;
     height: 700px;
     margin: 7em auto;
     border-radius: 1.5em;
@@ -24,7 +23,9 @@ html, body {
 .createBox
 {
     display: flex;
+    justify-content: center;
     align-items: center;
+    padding-left: 30px;
 }
 .WelcomeMessageCreate
 {
@@ -70,11 +71,10 @@ html, body {
     letter-spacing: 1px;
     background: rgba(136, 126, 126, 0.04);
     padding: 10px 20px;
-    border: none;
     border-radius: 20px;
     outline: none;
     box-sizing: border-box;
-    border: 2px solid rgba(0, 0, 0, 0.02);
+    border: 1px solid black;
     margin-bottom: 50px;
     margin-left: 46px;
     text-align: center;
@@ -137,6 +137,43 @@ a
 {
    color: white;
     font-family: 'Ubuntu', sans-serif;
+}
+/**/
+/*Adults*/
+.adultTableBox
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 1.5em;
+    border: solid black 2px;
+    text-align: center;
+    background-color: white;
+}
+.searchBox
+{
+    display: flex;
+    align-items: center;
+    background-color: white;
+    justify-content: space-evenly;
+    background-image: linear-gradient(to right, rgba(30, 75, 115, 1), rgba(255, 255, 255, 0));
+    border-radius: 1.5em;
+}
+
+.searchInput
+{
+    border-radius: 1em;
+    border: solid black 0.5px;
+    text-align: center;
+}
+.searchInput:hover
+{
+    border: solid #E040FB 3px;
+}
+#search
+{
+    color: white;
+    margin-top: 17px;
 }
 /**/
 /**/

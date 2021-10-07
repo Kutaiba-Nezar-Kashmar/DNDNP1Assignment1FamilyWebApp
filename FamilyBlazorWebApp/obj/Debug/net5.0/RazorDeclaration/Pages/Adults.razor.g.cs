@@ -105,12 +105,18 @@ using Data;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 95 "C:\Users\kkash\RiderProjects\DNP1Assignment1\FamilyBlazorWebApp\Pages\Adults.razor"
+#line 100 "C:\Users\kkash\RiderProjects\DNP1Assignment1\FamilyBlazorWebApp\Pages\Adults.razor"
  
     private IList<Adult> adultsToShow;
     private IList<Adult> allAdults;
 
     private string? filterByName;
+    private string? filterByGender;
+    private string? filterByEyeColor;
+    private string? filterByHairColor;
+    private int? filterbuAge;
+    
+    private string errorMessage;
     
     protected override async Task OnInitializedAsync()
     {
@@ -123,18 +129,109 @@ using Data;
         filterByName = null;
         try
         {
-            adultsToShow = allAdults.Where(a => ((a.FirstName + "" + a.LastName).ToLower()).Contains(changeEventArgs.Value.ToString().ToLower())).ToList();
+            filterByName = changeEventArgs.Value.ToString().ToLower();
+            if (filterByName != null)
+            {
+                adultsToShow = allAdults.Where(a => ((a.FirstName + "" + a.LastName).ToLower()).Contains(filterByName)).ToList();
+            }
+            else
+            {
+                adultsToShow = allAdults;
+            }
+         }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
+    }
+    /*foreach(var adult in allAdults)
+         use $"{firstName} ${lastname}.Contain" to search for an adult*/
+    }
+
+    private void FilterByGender(ChangeEventArgs changeEventArgs)
+    {
+        filterByGender = null;
+        try
+        {
+            filterByGender = changeEventArgs.Value.ToString().ToLower();
+            if (filterByGender != null)
+            {
+                adultsToShow = allAdults.Where(a => ((a.Sex).ToLower()).Contains(filterByGender)).ToList();
+            }
+            else
+            {
+                adultsToShow = allAdults;
+            }
+        }
+        catch (Exception e)
+        {
+            errorMessage = "Try again";
+        }
+    }
+
+    private void FilterByAge(ChangeEventArgs changeEventArgs)
+    {
+        filterbuAge = null;
+        try
+        {
+            filterbuAge = int.Parse(changeEventArgs.Value.ToString());
+            if (filterbuAge != null)
+            {
+                adultsToShow = allAdults.Where(a => a.Age == int.Parse(changeEventArgs.Value.ToString())).ToList();
+            }
+            else
+            {
+                adultsToShow = allAdults;
+            }
         }
         catch (Exception e)
         {
             Console.WriteLine(e);
             throw;
         }
-    /*
-         * foreach(var adult in allAdults)
-         *use $"{firstName} ${lastname}.Contain" to search for an adult
-         * 
-         */
+    }
+
+    private void FilterByEyeColor(ChangeEventArgs changeEventArgs)
+    {
+        filterByEyeColor = null;
+        try
+        {
+            filterByEyeColor = changeEventArgs.Value.ToString().ToLower();
+            if (filterByEyeColor != null)
+            {
+                adultsToShow = allAdults.Where(a => a.EyeColor.ToLower().Contains(filterByEyeColor)).ToList();
+            }
+            else
+            {
+                adultsToShow = allAdults;
+            }
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
+    }
+    private void FilterByHairColor(ChangeEventArgs changeEventArgs)
+    {
+        filterByHairColor = null;
+        try
+        {
+            filterByHairColor = changeEventArgs.Value.ToString().ToLower();
+            if (filterByHairColor != null)
+            {
+                adultsToShow = allAdults.Where(a => a.HairColor.ToLower().Contains(filterByHairColor)).ToList();
+            }
+            else
+            {
+                adultsToShow = allAdults;
+            }
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
     }
 
     private void Edit(int id)

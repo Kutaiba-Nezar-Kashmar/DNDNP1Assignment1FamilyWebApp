@@ -82,6 +82,13 @@ using FamilyBlazorWebApp.Shared;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 1 "C:\Users\kkash\RiderProjects\DNP1Assignment1\FamilyBlazorWebApp\Shared\NavMenu.razor"
+using Authentication;
+
+#line default
+#line hidden
+#nullable disable
     public partial class NavMenu : Microsoft.AspNetCore.Components.ComponentBase
     {
         #pragma warning disable 1998
@@ -90,7 +97,7 @@ using FamilyBlazorWebApp.Shared;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 32 "C:\Users\kkash\RiderProjects\DNP1Assignment1\FamilyBlazorWebApp\Shared\NavMenu.razor"
+#line 36 "C:\Users\kkash\RiderProjects\DNP1Assignment1\FamilyBlazorWebApp\Shared\NavMenu.razor"
        
     private bool collapseNavMenu = true;
 
@@ -100,11 +107,23 @@ using FamilyBlazorWebApp.Shared;
     {
         collapseNavMenu = !collapseNavMenu;
     }
-
+    private async Task PerformLogout()
+    {
+        try
+        {
+            ((CustomAuthenticationStateProvider) AuthenticationStateProvider).Logout();
+            NavigationManager.NavigateTo("/Adults");
+        }
+        catch (Exception e)
+        {
+        }
+    }
 
 #line default
 #line hidden
 #nullable disable
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private AuthenticationStateProvider AuthenticationStateProvider { get; set; }
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private NavigationManager NavigationManager { get; set; }
     }
 }
 #pragma warning restore 1591

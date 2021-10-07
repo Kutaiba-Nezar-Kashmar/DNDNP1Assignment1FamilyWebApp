@@ -19,7 +19,7 @@
                     <input class="inputField" type="text" placeholder="First name" @bind-value="newUser.FirstName"/>
                     <input class="inputField" type="text" placeholder="Last name" @bind-value="newUser.LastName"/>
                     <input class="inputField" type="email" placeholder="E-mail address" @bind-value="newUser.EmailAddress"/>
-                    <input class="inputField" type="number" placeholder="Age" @bind-value="newUser.Age"/>
+                    <input class="inputField" type="number" placeholder="Age" min="10" max="100" @bind-value="newUser.Age"/>
                     <input class="inputField" type="text" placeholder="User name" @bind-value="newUser.UserName"/>
                     <input class="inputField" type="password" placeholder="Password" @bind-value="newUser.Password"/>
                     <p class="errorMessage">@message</p>
