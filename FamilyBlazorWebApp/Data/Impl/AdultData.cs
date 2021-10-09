@@ -10,14 +10,13 @@ namespace Data.Impl
     public class AdultData : IAdultData
     {
         private string adultFile = "adults.json";
-        private FileContext fileContext;
         private IList<Adult> adults;
 
         public AdultData()
         {
             if (!File.Exists(adultFile))
             {
-               // new FileContext();
+               WriteTodosToFile();
             }
             else
             {

@@ -14,8 +14,15 @@ namespace Data.Impl
 
         public FamilyData()
         {
-            string content = File.ReadAllText(familyFile);
-            families = JsonSerializer.Deserialize<List<Family>>(content);
+            if (!File.Exists(familyFile))
+            {
+                WriteTodosToFile();
+            }
+            else
+            {
+                string content = File.ReadAllText(familyFile);
+                families = JsonSerializer.Deserialize<List<Family>>(content);
+            }
         }
 
         public IList<Family> GetFamilies()
@@ -36,12 +43,16 @@ namespace Data.Impl
 
         public void UpdateFamily(Family family)
         {
-            throw new System.NotImplementedException();
+            Family toUpdate = families.FirstOrDefault(f => f.Id == family.Id);
+            toUpdate.StreetName = family.StreetName;
+            toUpdate.HouseNumber = family.HouseNumber;
+            WriteTodosToFile();
         }
 
         public Family Get(int familyId)
         {
-            throw new System.NotImplementedException();
+            //return adults.FirstOrDefault(a => a.Id == adultId)
+            return families.FirstOrDefault(f => f.Id == familyId);
         }
         
         private void WriteTodosToFile()

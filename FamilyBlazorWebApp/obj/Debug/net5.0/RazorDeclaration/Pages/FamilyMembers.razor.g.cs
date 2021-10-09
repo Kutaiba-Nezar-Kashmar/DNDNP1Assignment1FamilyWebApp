@@ -83,21 +83,21 @@ using FamilyBlazorWebApp.Shared;
 #line hidden
 #nullable disable
 #nullable restore
-#line 2 "C:\Users\kkash\RiderProjects\DNP1Assignment1\FamilyBlazorWebApp\Pages\FamilyPage.razor"
-using Models;
-
-#line default
-#line hidden
-#nullable disable
-#nullable restore
-#line 3 "C:\Users\kkash\RiderProjects\DNP1Assignment1\FamilyBlazorWebApp\Pages\FamilyPage.razor"
+#line 2 "C:\Users\kkash\RiderProjects\DNP1Assignment1\FamilyBlazorWebApp\Pages\FamilyMembers.razor"
 using Data;
 
 #line default
 #line hidden
 #nullable disable
-    [Microsoft.AspNetCore.Components.RouteAttribute("/Family")]
-    public partial class FamilyPage : Microsoft.AspNetCore.Components.ComponentBase
+#nullable restore
+#line 3 "C:\Users\kkash\RiderProjects\DNP1Assignment1\FamilyBlazorWebApp\Pages\FamilyMembers.razor"
+using Models;
+
+#line default
+#line hidden
+#nullable disable
+    [Microsoft.AspNetCore.Components.RouteAttribute("/FamilyMembers/{Id:int}")]
+    public partial class FamilyMembers : Microsoft.AspNetCore.Components.ComponentBase
     {
         #pragma warning disable 1998
         protected override void BuildRenderTree(Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder __builder)
@@ -105,27 +105,28 @@ using Data;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 58 "C:\Users\kkash\RiderProjects\DNP1Assignment1\FamilyBlazorWebApp\Pages\FamilyPage.razor"
+#line 97 "C:\Users\kkash\RiderProjects\DNP1Assignment1\FamilyBlazorWebApp\Pages\FamilyMembers.razor"
  
-    protected bool IsVisible { get; set; }
-    
-    private IList<Family> familiesToShow;
-    private IList<Family> allFamilies;
+    [Parameter]
+    public int Id { get; set; }
+
+    private IList<Adult> adults { get; set; }
+    private IList<Child> children { get; set; }
+    private IList<Pet> pets { get; set; }
+
+    private Family familyMembersToShow = new Family(){Adults = new List<Adult>(), Children = new List<Child>(), Pets = new List<Pet>()};
 
     protected override async Task OnInitializedAsync()
     {
-        allFamilies = FamilyData.GetFamilies();
-        familiesToShow = allFamilies;
+        familyMembersToShow = FamilyData.Get(Id);
+        adults = familyMembersToShow.Adults;
+        children = familyMembersToShow.Children;
+        pets = familyMembersToShow.Pets;
     }
 
-    private void ViewFamilyMembers(int familyId)
+    private void AddChild()
     {
-        NavigationManager.NavigateTo($"FamilyMembers/{familyId}");
-    }
-    
-    private void Edit(int id)
-    {
-        NavigationManager.NavigateTo($"EditFamily/{id}");
+        
     }
 
 #line default

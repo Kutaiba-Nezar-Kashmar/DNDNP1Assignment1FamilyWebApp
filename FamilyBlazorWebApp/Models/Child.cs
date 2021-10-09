@@ -2,7 +2,7 @@
 
 namespace Models
 {
-    public class Child
+    public class Child : Person
     {
         public List<Interest> Interests { get; set; }
         public List<Pet> Pets { get; set; }

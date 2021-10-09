@@ -209,6 +209,22 @@ a
     margin-right: 10px;
 }
 /**/
+/*Family*/
+.FamilyMemberBox
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+}
+.FamilyBox
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+}
+/**/
 /**/
 a, .btn-link {
     color: #0366d6;

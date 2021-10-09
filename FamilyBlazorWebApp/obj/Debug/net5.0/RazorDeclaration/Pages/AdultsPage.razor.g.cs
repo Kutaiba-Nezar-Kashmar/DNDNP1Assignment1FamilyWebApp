@@ -83,21 +83,21 @@ using FamilyBlazorWebApp.Shared;
 #line hidden
 #nullable disable
 #nullable restore
-#line 2 "C:\Users\kkash\RiderProjects\DNP1Assignment1\FamilyBlazorWebApp\Pages\Adults.razor"
+#line 2 "C:\Users\kkash\RiderProjects\DNP1Assignment1\FamilyBlazorWebApp\Pages\AdultsPage.razor"
 using Models;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 3 "C:\Users\kkash\RiderProjects\DNP1Assignment1\FamilyBlazorWebApp\Pages\Adults.razor"
+#line 3 "C:\Users\kkash\RiderProjects\DNP1Assignment1\FamilyBlazorWebApp\Pages\AdultsPage.razor"
 using Data;
 
 #line default
 #line hidden
 #nullable disable
     [Microsoft.AspNetCore.Components.RouteAttribute("/Adults")]
-    public partial class Adults : Microsoft.AspNetCore.Components.ComponentBase
+    public partial class AdultsPage : Microsoft.AspNetCore.Components.ComponentBase
     {
         #pragma warning disable 1998
         protected override void BuildRenderTree(Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder __builder)
@@ -105,7 +105,7 @@ using Data;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 100 "C:\Users\kkash\RiderProjects\DNP1Assignment1\FamilyBlazorWebApp\Pages\Adults.razor"
+#line 100 "C:\Users\kkash\RiderProjects\DNP1Assignment1\FamilyBlazorWebApp\Pages\AdultsPage.razor"
  
     private IList<Adult> adultsToShow;
     private IList<Adult> allAdults;

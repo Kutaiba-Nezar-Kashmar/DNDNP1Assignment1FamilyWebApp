@@ -1,0 +1,119 @@
+﻿@page "/FamilyMembers/{Id:int}"
+@using Data
+@using Models
+@inject IFamilyData FamilyData
+@inject NavigationManager NavigationManager
+
+
+@if (familyMembersToShow == null)
+{
+    <em>Family members not found!!!</em>
+}
+else
+{
+    <h3 style="color: white">Adults</h3>
+    <br/>
+    <div class="FamilyMemberBox">
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Person ID</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Age</th>
+                <th>Job Title</th>
+                <th>Salary</th>
+                <th>Sex</th>
+                <th>Weight</th>
+                <th>Height</th>
+                <th>Hair Color</th>
+                <th>Eye Color</th>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach (var adult in familyMembersToShow.Adults)
+            {
+                <tr>
+                    <td>@adult.Id</td>
+                    <td>@adult.FirstName</td>
+                    <td>@adult.LastName</td>
+                    <td>@adult.Age</td>
+                    <td>@adult.JobTitle.JobTitle</td>
+                    <td>@adult.JobTitle.Salary</td>
+                    <td>@adult.Sex</td>
+                    <td>@adult.Weight</td>
+                    <td>@adult.Height</td>
+                    <td>@adult.HairColor</td>
+                    <td>@adult.EyeColor</td>
+                </tr>
+            }
+            </tbody>
+        </table>
+    </div>
+    <br/>
+    <h3 style="color: white">Children</h3>
+    <br/>
+    <div class="FamilyMemberBox">
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Person ID</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Age</th>
+                <th>Sex</th>
+                <th>Weight</th>
+                <th>Height</th>
+                <th>Hair Color</th>
+                <th>Eye Color</th>
+                <th>Intrests</th>
+                <th>Pets</th>
+                <th>Add</th>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach (var child in children)
+            {
+                <tr>@child.Id</tr>
+                <tr>@child.FirstName</tr>
+                <tr>@child.LastName</tr>
+                <tr>@child.Age</tr>
+                <tr>@child.Sex</tr>
+                <tr>@child.Weight</tr>
+                <tr>@child.Height</tr>
+                <tr>@child.HairColor</tr>
+                <tr>@child.EyeColor</tr>
+                <tr>@child.Interests</tr>
+                <tr>@child.Pets</tr>
+                <tr></tr>               
+            }
+            </tbody>
+        </table>
+    </div>
+    
+}
+
+@code
+{
+    [Parameter]
+    public int Id { get; set; }
+
+    private IList<Adult> adults { get; set; }
+    private IList<Child> children { get; set; }
+    private IList<Pet> pets { get; set; }
+
+    private Family familyMembersToShow = new Family(){Adults = new List<Adult>(), Children = new List<Child>(), Pets = new List<Pet>()};
+
+    protected override async Task OnInitializedAsync()
+    {
+        familyMembersToShow = FamilyData.Get(Id);
+        adults = familyMembersToShow.Adults;
+        children = familyMembersToShow.Children;
+        pets = familyMembersToShow.Pets;
+    }
+
+    private void AddChild()
+    {
+        
+    }
+}

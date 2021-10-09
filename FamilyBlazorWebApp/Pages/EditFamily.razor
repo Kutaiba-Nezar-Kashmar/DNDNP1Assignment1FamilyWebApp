@@ -1,0 +1,41 @@
+﻿@page "/EditFamily/{Id:int}"
+@using Data
+@using Models
+@inject IFamilyData FamilyData 
+@inject NavigationManager NavigationManager
+
+@if (familyToEdit == null)
+{
+    <em>Family is not found!!!</em>
+}
+
+else
+{
+    <EditForm Model="@familyToEdit" OnValidSubmit="@Save">
+        <DataAnnotationsValidator/>
+        <ValidationSummary/>
+        <div class="editFamilyBox">
+            <input type="number" placeholder="ID" @bind-value="familyToEdit.Id"/>
+            <input type="number" placeholder="House Number" @bind-value="familyToEdit.HouseNumber"/>
+            <input type="text" placeholder="Street name" @bind-value="familyToEdit.StreetName"/>
+            <button type="submit">Save</button>
+        </div>
+    </EditForm>
+}
+@code 
+{
+    [Parameter]
+    public int Id { get; set; }
+
+    private Family familyToEdit;
+
+    protected override async Task OnInitializedAsync()
+    {
+        familyToEdit = FamilyData.Get(Id);
+    }
+
+    private void Save()
+    {
+        FamilyData.UpdateFamily(familyToEdit);
+    }
+}
