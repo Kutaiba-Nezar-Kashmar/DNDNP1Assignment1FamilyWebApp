@@ -4,6 +4,13 @@
 @inject IFamilyData FamilyData
 @inject NavigationManager NavigationManager
 
+<div class="aduPage">
+    <div class="searchBox">
+        <p class="search">Search:</p>
+        <input class="searchInput" type="text" placeholder="Street Name" @oninput="((arg)=> FilterByStreetName(arg))"/>
+        <input class="searchInput" type="number" placeholder="House Number" min="1" @oninput="((arg)=> FilterByHouseNumber(arg))"/>
+    </div>
+</div>
 
 @if (familiesToShow == null)
 {
@@ -56,19 +63,19 @@ else
                         <Authorized>
                             <td>
                                 <button @onclick="@(() => Edit(family.Id))">
-                                    <i class="oi oi-pencil"/>
+                                    <i class="oi oi-pencil edit"/>
                                 </button>
                             </td>
                             <td>
                                 <button @onclick="@(() => RemoveFamily(family.Id))">
-                                    <i class="oi oi-trash"/>
+                                    <i class="oi oi-trash remove"/>
                                 </button>
                             </td>
                         </Authorized>
                     </AuthorizeView>
                     <td>
                         <button @onclick="@(() => ViewFamilyMembers(family.Id))">
-                            <i class="oi oi-arrow-thick-right"/>
+                            <i class="oi oi-arrow-thick-right view"/>
                         </button>
                     </td>
                 </tr>
@@ -82,6 +89,9 @@ else
 {
     private IList<Family> familiesToShow;
     private IList<Family> allFamilies;
+
+    private int? filterByHouseNumber;
+    private string? filterByStreetName;
 
     protected override async Task OnInitializedAsync()
     {
@@ -99,16 +109,55 @@ else
         NavigationManager.NavigateTo($"EditFamily/{id}");
     }
 
-    private void Add()
-    {
-        NavigationManager.NavigateTo("AddFamily");
-    }
-
     private void RemoveFamily(int familyId)
     {
         Family familyToRemove = allFamilies.First(f => f.Id == familyId);
         FamilyData.RemoveFamily(familyId);
         allFamilies.Remove(familyToRemove);
         familiesToShow.Remove(familyToRemove);
+    }
+
+    private void FilterByHouseNumber(ChangeEventArgs changeEventArgs)
+    {
+        filterByHouseNumber = null;
+        try
+        {
+            filterByHouseNumber = int.Parse(changeEventArgs.Value.ToString());
+            if (filterByHouseNumber != null)
+            {
+                familiesToShow = allFamilies.Where(f => f.HouseNumber == int.Parse(changeEventArgs.Value.ToString())).ToList();
+            }
+            else
+            {
+                familiesToShow = allFamilies;
+            }
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
+    }
+
+    private void FilterByStreetName(ChangeEventArgs changeEventArgs)
+    {
+        filterByStreetName = null;
+        try
+        {
+            filterByStreetName = changeEventArgs.Value.ToString().ToLower();
+            if (filterByStreetName != null)
+            {
+                familiesToShow = allFamilies.Where(f => f.StreetName.ToLower().Contains(filterByStreetName)).ToList();
+            }
+            else
+            {
+                familiesToShow = allFamilies;
+            }
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
     }
 }

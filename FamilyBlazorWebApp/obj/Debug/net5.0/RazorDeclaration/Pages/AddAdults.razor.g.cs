@@ -105,14 +105,14 @@ using Data;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 58 "C:\Users\kkash\RiderProjects\DNP1Assignment1\FamilyBlazorWebApp\Pages\AddAdults.razor"
+#line 57 "C:\Users\kkash\RiderProjects\DNP1Assignment1\FamilyBlazorWebApp\Pages\AddAdults.razor"
  
     //JobTitle = new Job() to create new Job and solve the NullPointer 
     private Adult newAdult = new Adult(){JobTitle = new Job()};
 
-     private void AddAdult()
+    private void AddAdult()
     {
-         AdultData.AddAdult(newAdult);
+        AdultData.AddAdult(newAdult);
         NavigationManager.NavigateTo("/Adults");
     
     }

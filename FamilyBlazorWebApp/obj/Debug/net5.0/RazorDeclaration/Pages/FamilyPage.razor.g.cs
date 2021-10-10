@@ -105,10 +105,13 @@ using Data;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 82 "C:\Users\kkash\RiderProjects\DNP1Assignment1\FamilyBlazorWebApp\Pages\FamilyPage.razor"
+#line 89 "C:\Users\kkash\RiderProjects\DNP1Assignment1\FamilyBlazorWebApp\Pages\FamilyPage.razor"
  
     private IList<Family> familiesToShow;
     private IList<Family> allFamilies;
+
+    private int? filterByHouseNumber;
+    private string? filterByStreetName;
 
     protected override async Task OnInitializedAsync()
     {
@@ -126,17 +129,56 @@ using Data;
         NavigationManager.NavigateTo($"EditFamily/{id}");
     }
 
-    private void Add()
-    {
-        NavigationManager.NavigateTo("AddFamily");
-    }
-
     private void RemoveFamily(int familyId)
     {
         Family familyToRemove = allFamilies.First(f => f.Id == familyId);
         FamilyData.RemoveFamily(familyId);
         allFamilies.Remove(familyToRemove);
         familiesToShow.Remove(familyToRemove);
+    }
+
+    private void FilterByHouseNumber(ChangeEventArgs changeEventArgs)
+    {
+        filterByHouseNumber = null;
+        try
+        {
+            filterByHouseNumber = int.Parse(changeEventArgs.Value.ToString());
+            if (filterByHouseNumber != null)
+            {
+                familiesToShow = allFamilies.Where(f => f.HouseNumber == int.Parse(changeEventArgs.Value.ToString())).ToList();
+            }
+            else
+            {
+                familiesToShow = allFamilies;
+            }
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
+    }
+
+    private void FilterByStreetName(ChangeEventArgs changeEventArgs)
+    {
+        filterByStreetName = null;
+        try
+        {
+            filterByStreetName = changeEventArgs.Value.ToString().ToLower();
+            if (filterByStreetName != null)
+            {
+                familiesToShow = allFamilies.Where(f => f.StreetName.ToLower().Contains(filterByStreetName)).ToList();
+            }
+            else
+            {
+                familiesToShow = allFamilies;
+            }
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
     }
 
 #line default

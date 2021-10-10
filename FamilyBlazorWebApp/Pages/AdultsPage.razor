@@ -6,7 +6,7 @@
 
 <div class="aduPage">
     <div class="searchBox">
-        <p id="search">Search:</p>
+        <p class="search">Search:</p>
         <input class="searchInput" type="text" placeholder="Name" @oninput="((arg) => FilterByPersonName(arg))"/>
         <input class="searchInput" type="text" placeholder="Gender" @oninput="((arg) => FilterByGender(arg))"/>
         <input class="searchInput" type="number" placeholder="Age" @oninput="((arg) => FilterByAge(arg))"/>
@@ -78,12 +78,12 @@
                             <Authorized>
                                 <td>
                                     <button @onclick="@(() => Edit(adult.Id))">
-                                        <i class="oi oi-pencil"/>
+                                        <i class="oi oi-pencil edit"/>
                                     </button>
                                 </td>
                                 <td>
                                     <button @onclick="@(() => RemoveAdult(adult.Id))">
-                                        <i class="oi oi-trash"/>
+                                        <i class="oi oi-trash remove"/>
                                     </button>
                                 </td>
                             </Authorized>
@@ -129,14 +129,12 @@
             {
                 adultsToShow = allAdults;
             }
-         }
+        }
         catch (Exception e)
         {
             Console.WriteLine(e);
             throw;
-    }
-    /*foreach(var adult in allAdults)
-         use $"{firstName} ${lastname}.Contain" to search for an adult*/
+        }
     }
 
     private void FilterByGender(ChangeEventArgs changeEventArgs)

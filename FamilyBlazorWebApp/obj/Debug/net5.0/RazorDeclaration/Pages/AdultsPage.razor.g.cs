@@ -138,14 +138,12 @@ using Data;
             {
                 adultsToShow = allAdults;
             }
-         }
+        }
         catch (Exception e)
         {
             Console.WriteLine(e);
             throw;
-    }
-    /*foreach(var adult in allAdults)
-         use $"{firstName} ${lastname}.Contain" to search for an adult*/
+        }
     }
 
     private void FilterByGender(ChangeEventArgs changeEventArgs)
