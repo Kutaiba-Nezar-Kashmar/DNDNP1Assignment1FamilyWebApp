@@ -83,21 +83,21 @@ using FamilyBlazorWebApp.Shared;
 #line hidden
 #nullable disable
 #nullable restore
-#line 2 "C:\Users\kkash\RiderProjects\DNP1Assignment1\FamilyBlazorWebApp\Pages\FamilyPage.razor"
+#line 2 "C:\Users\kkash\RiderProjects\DNP1Assignment1\FamilyBlazorWebApp\Pages\AddFamily.razor"
 using Models;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 3 "C:\Users\kkash\RiderProjects\DNP1Assignment1\FamilyBlazorWebApp\Pages\FamilyPage.razor"
+#line 3 "C:\Users\kkash\RiderProjects\DNP1Assignment1\FamilyBlazorWebApp\Pages\AddFamily.razor"
 using Data;
 
 #line default
 #line hidden
 #nullable disable
-    [Microsoft.AspNetCore.Components.RouteAttribute("/Family")]
-    public partial class FamilyPage : Microsoft.AspNetCore.Components.ComponentBase
+    [Microsoft.AspNetCore.Components.RouteAttribute("/AddFamily")]
+    public partial class AddFamily : Microsoft.AspNetCore.Components.ComponentBase
     {
         #pragma warning disable 1998
         protected override void BuildRenderTree(Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder __builder)
@@ -105,38 +105,22 @@ using Data;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 68 "C:\Users\kkash\RiderProjects\DNP1Assignment1\FamilyBlazorWebApp\Pages\FamilyPage.razor"
+#line 53 "C:\Users\kkash\RiderProjects\DNP1Assignment1\FamilyBlazorWebApp\Pages\AddFamily.razor"
  
-    private IList<Family> familiesToShow;
-    private IList<Family> allFamilies;
-
-    protected override async Task OnInitializedAsync()
-    {
-        allFamilies = FamilyData.GetFamilies();
-        familiesToShow = allFamilies;
-    }
-
-    private void ViewFamilyMembers(int familyId)
-    {
-        NavigationManager.NavigateTo($"FamilyMembers/{familyId}");
-    }
+    private Adult newAdult = new Adult() {JobTitle = new Job()};
+    private Pet newPet = new Pet();
+    private Interest newInterest = new Interest();
+    private Child newChild = new Child() {Interests = new List<Interest>(), Pets = new List<Pet>()};
+    private Family newFamily = new Family() {Adults = new List<Adult>(), Children = new List<Child>(), Pets = new List<Pet>()};
     
-    private void Edit(int id)
+    private void AddNewFamily()
     {
-        NavigationManager.NavigateTo($"EditFamily/{id}");
-    }
-
-    private void Add()
-    {
-        NavigationManager.NavigateTo("AddFamily");
-    }
-
-    private void RemoveFamily(int familyId)
-    {
-        Family familyToRemove = allFamilies.First(f => f.Id == familyId);
-        FamilyData.RemoveFamily(familyId);
-        allFamilies.Remove(familyToRemove);
-        familiesToShow.Remove(familyToRemove);
+        newFamily.Adults.Add(newAdult);
+        newChild.Interests.Add(newInterest);
+        newChild.Pets.Add(newPet);
+        newFamily.Children.Add(newChild);
+        FamilyData.AddFamily(newFamily);
+        NavigationManager.NavigateTo("/Family");
     }
 
 #line default

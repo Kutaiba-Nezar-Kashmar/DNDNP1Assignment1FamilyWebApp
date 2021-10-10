@@ -11,12 +11,15 @@ namespace Data.Impl
     {
         private string familyFile = "families.json";
         private IList<Family> families = new List<Family>();
+        private IList<Child> children = new List<Child>();
+        private IList<Adult> adults = new List<Adult>();
+        private IList<Pet> pets = new List<Pet>();
 
         public FamilyData()
         {
             if (!File.Exists(familyFile))
             {
-                WriteTodosToFile();
+                WriteFamiliesToFile();
             }
             else
             {
@@ -33,29 +36,36 @@ namespace Data.Impl
 
         public void AddFamily(Family family)
         {
-            throw new System.NotImplementedException();
+            int max = families.Max(family => family.Id);
+            family.Id = (++max);
+            families.Add(family);
+            WriteFamiliesToFile();
         }
 
         public void RemoveFamily(int familyId)
         {
-            throw new System.NotImplementedException();
+            Family familyToRemove = families.First(f => f.Id == familyId);
+            families.Remove(familyToRemove);
+            WriteFamiliesToFile();
         }
 
         public void UpdateFamily(Family family)
         {
-            Family toUpdate = families.FirstOrDefault(f => f.Id == family.Id);
+            Family toUpdate = families.First(f => f.Id == family.Id);
             toUpdate.StreetName = family.StreetName;
             toUpdate.HouseNumber = family.HouseNumber;
-            WriteTodosToFile();
+            toUpdate.Adults = family.Adults;
+            toUpdate.Children = family.Children;
+            toUpdate.Pets = family.Pets;
+            WriteFamiliesToFile();
         }
 
         public Family Get(int familyId)
         {
-            //return adults.FirstOrDefault(a => a.Id == adultId)
             return families.FirstOrDefault(f => f.Id == familyId);
         }
-        
-        private void WriteTodosToFile()
+
+        private void WriteFamiliesToFile()
         {
             string familiesAsJson = JsonSerializer.Serialize(families);
             File.WriteAllText(familyFile, familiesAsJson);

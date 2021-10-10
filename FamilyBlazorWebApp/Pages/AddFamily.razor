@@ -1,0 +1,69 @@
+﻿@page "/AddFamily"
+@using Models
+@using Data
+@inject IFamilyData FamilyData
+@inject NavigationManager NavigationManager
+
+<EditForm Model="@newFamily" OnValidSubmit="@AddNewFamily">
+    <DataAnnotationsValidator/>
+    <ValidationSummary/>
+    <div style="background-color: white">
+        <input type="text" placeholder="Street Name" @bind-value="@newFamily.StreetName"/>
+        <input type="number" placeholder="House number" @bind-value="@newFamily.HouseNumber"/>
+        <br/>
+        <h3>NEW ADULT</h3>
+        <br/>
+        <br/>
+        <input type="text" placeholder="" @bind-value="newAdult.FirstName"/>
+        <input type="text" placeholder="" @bind-value="newAdult.LastName"/>
+        <input type="number" placeholder="Age" @bind-value="newAdult.Age"/>
+        <input type="text" placeholder="Sex" @bind-value="newAdult.Sex"/>
+        <input type="number" placeholder="Weight" @bind-value="newAdult.Weight"/>
+        <input type="number" placeholder="Height" @bind-value="newAdult.Height"/>
+        <input type="text" placeholder="HairColor" @bind-value="newAdult.HairColor"/>
+        <input type="text" placeholder="EyeColor" @bind-value="newAdult.EyeColor"/>
+        <input type="text" placeholder="JobTitle" @bind-value="newAdult.JobTitle.JobTitle"/>
+        <input type="number" placeholder="Salary" @bind-value="newAdult.JobTitle.Salary"/>
+        <br/>
+        <br/>
+        <h3>NEW CHILD</h3>
+        <br/>
+        <br/>
+        <input type="text" placeholder="" @bind-value="newChild.FirstName"/>
+        <input type="text" placeholder="" @bind-value="newChild.LastName"/>
+        <input type="number" placeholder="Age" @bind-value="newChild.Age"/>
+        <input type="text" placeholder="Sex" @bind-value="newChild.Sex"/>
+        <input type="number" placeholder="Weight" @bind-value="newChild.Weight"/>
+        <input type="number" placeholder="Height" @bind-value="newChild.Height"/>
+        <input type="text" placeholder="HairColor" @bind-value="newChild.HairColor"/>
+        <input type="text" placeholder="Interest type" @bind-value="newInterest.Type"/>
+        <input type="text" placeholder="Interest Description" @bind-value="newInterest.Description"/>
+        <input type="number" placeholder="Pet Id" @bind-value="newPet.Id"/>
+        <input type="text" placeholder="Pet name" @bind-value="newPet.Species"/>
+        <input type="text" placeholder="Pet name" @bind-value="newPet.Name"/>
+        <input type="number" placeholder="Pet age" @bind-value="newPet.Age"/>
+        
+        <button type="submit">
+            ADD
+        </button>
+    </div>
+</EditForm>
+
+@code 
+{
+    private Adult newAdult = new Adult() {JobTitle = new Job()};
+    private Pet newPet = new Pet();
+    private Interest newInterest = new Interest();
+    private Child newChild = new Child() {Interests = new List<Interest>(), Pets = new List<Pet>()};
+    private Family newFamily = new Family() {Adults = new List<Adult>(), Children = new List<Child>(), Pets = new List<Pet>()};
+    
+    private void AddNewFamily()
+    {
+        newFamily.Adults.Add(newAdult);
+        newChild.Interests.Add(newInterest);
+        newChild.Pets.Add(newPet);
+        newFamily.Children.Add(newChild);
+        FamilyData.AddFamily(newFamily);
+        NavigationManager.NavigateTo("/Family");
+    }
+}

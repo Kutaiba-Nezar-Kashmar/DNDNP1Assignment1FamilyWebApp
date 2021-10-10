@@ -105,16 +105,39 @@ using Models;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 26 "C:\Users\kkash\RiderProjects\DNP1Assignment1\FamilyBlazorWebApp\Pages\EditFamily.razor"
+#line 49 "C:\Users\kkash\RiderProjects\DNP1Assignment1\FamilyBlazorWebApp\Pages\EditFamily.razor"
  
     [Parameter]
     public int Id { get; set; }
 
     private Family familyToEdit;
+    private IList<Child> children;
+    private IList<Interest> interests;
+    private IList<Pet> pets;
 
     protected override async Task OnInitializedAsync()
     {
         familyToEdit = FamilyData.Get(Id);
+        children = familyToEdit.Children;
+    
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 62 "C:\Users\kkash\RiderProjects\DNP1Assignment1\FamilyBlazorWebApp\Pages\EditFamily.razor"
+     foreach (var  c in children)
+    {
+        interests = c.Interests;
+        pets = c.Pets;
+    }
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 66 "C:\Users\kkash\RiderProjects\DNP1Assignment1\FamilyBlazorWebApp\Pages\EditFamily.razor"
+     
     }
 
     private void Save()

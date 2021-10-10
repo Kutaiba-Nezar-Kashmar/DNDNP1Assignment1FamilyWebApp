@@ -18,6 +18,29 @@ else
             <input type="number" placeholder="ID" @bind-value="familyToEdit.Id"/>
             <input type="number" placeholder="House Number" @bind-value="familyToEdit.HouseNumber"/>
             <input type="text" placeholder="Street name" @bind-value="familyToEdit.StreetName"/>
+            @foreach (var c in children)
+            {
+                <input type="text" placeholder="First Name" @bind-value="c.FirstName"/>
+                <input type="text" placeholder="Last Name" @bind-value="c.LastName"/>
+                <input type="text" placeholder="Hair color" @bind-value="c.HairColor"/>
+                <input type="text" placeholder="Eye color" @bind-value="c.EyeColor"/>
+                <input type="number" placeholder="Age" @bind-value="c.Age"/>
+                <input type="number" placeholder="Weight" @bind-value="c.Weight"/>
+                <input type="number" placeholder="Height" @bind-value="c.Height"/>
+                <input type="text" placeholder="Sex" @bind-value="c.Sex"/>
+                
+                @foreach (var i in interests)
+                {
+                    <input type="text" placeholder="Type" @bind-value="i.Type"/>
+                    <input type="text" placeholder="Description" @bind-value="i.Description"/>
+                }
+                @foreach(var p in pets)
+                {
+                    <input type="text" placeholder="Description" @bind-value="p.Species"/>
+                    <input type="text" placeholder="Name" @bind-value="p.Name"/>
+                    <input type="number" placeholder="Age" @bind-value="p.Age"/>
+                }
+            }
             <button type="submit">Save</button>
         </div>
     </EditForm>
@@ -28,10 +51,19 @@ else
     public int Id { get; set; }
 
     private Family familyToEdit;
+    private IList<Child> children;
+    private IList<Interest> interests;
+    private IList<Pet> pets;
 
     protected override async Task OnInitializedAsync()
     {
         familyToEdit = FamilyData.Get(Id);
+        children = familyToEdit.Children;
+    @foreach (var  c in children)
+    {
+        interests = c.Interests;
+        pets = c.Pets;
+    }
     }
 
     private void Save()

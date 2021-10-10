@@ -22,7 +22,7 @@ else
   
     <br/>
     <div class="FamilyBox">
-        <div class="table">
+        <table class="table">
             <thead>
             <tr>
                 <th>Family ID</th>
@@ -45,19 +45,27 @@ else
                         </button>
                     </td>
                     <td>
-                        <button @onclick="@(() => ViewFamilyMembers(family.Id))"></button>
+                        <button @onclick="@(() => ViewFamilyMembers(family.Id))">
+                            <i class="oi oi-arrow-thick-right"/>
+                        </button>
+                    </td>
+                    <td>
+                        <button @onclick="@(() => RemoveFamily(family.Id))">
+                            <i class="oi oi-trash"/>
+                        </button>
                     </td>
                 </tr>
             }
             </tbody>
-        </div>
+        </table>
+        <button @onclick="@Add">
+            <i class="oi oi-arrow-circle-bottom"/>
+        </button>
     </div>
 }
 
 @code 
 {
-    protected bool IsVisible { get; set; }
-    
     private IList<Family> familiesToShow;
     private IList<Family> allFamilies;
 
@@ -75,5 +83,18 @@ else
     private void Edit(int id)
     {
         NavigationManager.NavigateTo($"EditFamily/{id}");
+    }
+
+    private void Add()
+    {
+        NavigationManager.NavigateTo("AddFamily");
+    }
+
+    private void RemoveFamily(int familyId)
+    {
+        Family familyToRemove = allFamilies.First(f => f.Id == familyId);
+        FamilyData.RemoveFamily(familyId);
+        allFamilies.Remove(familyToRemove);
+        familiesToShow.Remove(familyToRemove);
     }
 }

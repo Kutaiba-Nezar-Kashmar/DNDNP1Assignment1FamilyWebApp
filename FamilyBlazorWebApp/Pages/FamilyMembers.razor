@@ -11,7 +11,6 @@
 }
 else
 {
-    <h3 style="color: white">Adults</h3>
     <br/>
     <div class="FamilyMemberBox">
         <table class="table">
@@ -31,7 +30,7 @@ else
             </tr>
             </thead>
             <tbody>
-            @foreach (var adult in familyMembersToShow.Adults)
+            @foreach (var adult in adults)
             {
                 <tr>
                     <td>@adult.Id</td>
@@ -66,27 +65,56 @@ else
                 <th>Height</th>
                 <th>Hair Color</th>
                 <th>Eye Color</th>
-                <th>Intrests</th>
-                <th>Pets</th>
-                <th>Add</th>
+                <th>Type of Intrests</th>
+                <th>Description</th>
             </tr>
             </thead>
             <tbody>
             @foreach (var child in children)
             {
-                <tr>@child.Id</tr>
-                <tr>@child.FirstName</tr>
-                <tr>@child.LastName</tr>
-                <tr>@child.Age</tr>
-                <tr>@child.Sex</tr>
-                <tr>@child.Weight</tr>
-                <tr>@child.Height</tr>
-                <tr>@child.HairColor</tr>
-                <tr>@child.EyeColor</tr>
-                <tr>@child.Interests</tr>
-                <tr>@child.Pets</tr>
-                <tr></tr>               
+                <tr>
+                    <td>@child.Id</td>
+                    <td>@child.FirstName</td>
+                    <td>@child.LastName</td>
+                    <td>@child.Age</td>
+                    <td>@child.Sex</td>
+                    <td>@child.Weight</td>
+                    <td>@child.Height</td>
+                    <td>@child.HairColor</td>
+                    <td>@child.EyeColor</td>
+                    @foreach (var intr in interests)
+                    {
+                        <tr>
+                            <td>@intr.Type</td>
+                            <td>@intr.Description</td>
+                        </tr>
+                    }
+                </tr>               
             }
+            </tbody>
+        </table>
+    </div>
+    <br/>
+    <h3 style="color:white;">Pets</h3>
+    <br/>
+    <div class="FamilyMemberBox">
+        <table class="table">
+            <thead>
+            <th>Pet Id</th>
+            <th>Species</th>
+            <th>Name</th>
+            <th>Age</th>
+            </thead>
+            <tbody>
+            <tr>
+                @foreach (var p in pets)
+                {
+                    <td>@p.Id</td>
+                    <td>@p.Species</td>
+                    <td>@p.Name</td>
+                    <td>@p.Age</td>
+                }
+            </tr>
             </tbody>
         </table>
     </div>
@@ -101,6 +129,7 @@ else
     private IList<Adult> adults { get; set; }
     private IList<Child> children { get; set; }
     private IList<Pet> pets { get; set; }
+    private IList<Interest> interests { get; set; }
 
     private Family familyMembersToShow = new Family(){Adults = new List<Adult>(), Children = new List<Child>(), Pets = new List<Pet>()};
 
@@ -110,10 +139,10 @@ else
         adults = familyMembersToShow.Adults;
         children = familyMembersToShow.Children;
         pets = familyMembersToShow.Pets;
-    }
-
-    private void AddChild()
-    {
-        
+        @foreach (var  c in children)
+        {
+            interests = c.Interests;
+            pets = c.Pets;
+        }
     }
 }

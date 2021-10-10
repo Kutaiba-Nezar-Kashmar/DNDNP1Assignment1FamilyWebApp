@@ -143,7 +143,6 @@ using Authentication;
         try
         {
             ((CustomAuthenticationStateProvider) AuthenticationStateProvider).Logout();
-            NavigationManager.NavigateTo("/");
         }
         catch (Exception e)
         {

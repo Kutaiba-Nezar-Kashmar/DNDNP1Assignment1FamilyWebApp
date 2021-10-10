@@ -13,12 +13,12 @@
         <AuthorizeView>
             <NotAuthorized>
                 <div class="top-row px-4 topBar">
-                    <a href="/" target="_blank" class="oi oi-account-login"> Login</a>
+                    <a href="/" target="_self" class="oi oi-account-login"> Login</a>
                 </div>
             </NotAuthorized>
             <Authorized>
                 <div class="top-row px-4 topBar">
-                    <a href="" target="_blank" class="oi oi-account-logout" @onclick="PerformLogout"> Logout</a>
+                    <a href="" target="_self" class="oi oi-account-logout" @onclick="PerformLogout"> Logout</a>
                 </div>
             </Authorized>
         </AuthorizeView>
@@ -36,7 +36,6 @@
         try
         {
             ((CustomAuthenticationStateProvider) AuthenticationStateProvider).Logout();
-            NavigationManager.NavigateTo("/");
         }
         catch (Exception e)
         {
