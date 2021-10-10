@@ -21,14 +21,23 @@ else
 {
   
     <br/>
-    <div class="FamilyBox">
+    <div class="TableBox">
         <table class="table">
             <thead>
             <tr>
-                <th>Family ID</th>
+                <AuthorizeView>
+                    <Authorized>
+                        <th>Family ID</th>
+                    </Authorized>
+                </AuthorizeView>
                 <th>Street Name</th>
                 <th>House Number</th>
-                <th>Edit</th>
+                <AuthorizeView>
+                    <Authorized>
+                        <th>Edit</th>
+                        <th>Remove</th>
+                    </Authorized>
+                </AuthorizeView>
                 <th>View Family Members</th>
             </tr>
             </thead>
@@ -36,31 +45,36 @@ else
             @foreach (var family in familiesToShow)
             {
                 <tr>
-                    <td>@family.Id</td>
+                    <AuthorizeView>
+                        <Authorized>
+                            <td>@family.Id</td>
+                        </Authorized>
+                    </AuthorizeView>
                     <td>@family.StreetName</td>
                     <td>@family.HouseNumber</td>
-                    <td>
-                        <button @onclick="@(() => Edit(family.Id))">
-                            <i class="oi oi-pencil"/>
-                        </button>
-                    </td>
+                    <AuthorizeView>
+                        <Authorized>
+                            <td>
+                                <button @onclick="@(() => Edit(family.Id))">
+                                    <i class="oi oi-pencil"/>
+                                </button>
+                            </td>
+                            <td>
+                                <button @onclick="@(() => RemoveFamily(family.Id))">
+                                    <i class="oi oi-trash"/>
+                                </button>
+                            </td>
+                        </Authorized>
+                    </AuthorizeView>
                     <td>
                         <button @onclick="@(() => ViewFamilyMembers(family.Id))">
                             <i class="oi oi-arrow-thick-right"/>
-                        </button>
-                    </td>
-                    <td>
-                        <button @onclick="@(() => RemoveFamily(family.Id))">
-                            <i class="oi oi-trash"/>
                         </button>
                     </td>
                 </tr>
             }
             </tbody>
         </table>
-        <button @onclick="@Add">
-            <i class="oi oi-arrow-circle-bottom"/>
-        </button>
     </div>
 }
 

@@ -105,12 +105,13 @@ using Models;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 49 "C:\Users\kkash\RiderProjects\DNP1Assignment1\FamilyBlazorWebApp\Pages\EditFamily.razor"
+#line 161 "C:\Users\kkash\RiderProjects\DNP1Assignment1\FamilyBlazorWebApp\Pages\EditFamily.razor"
  
     [Parameter]
     public int Id { get; set; }
 
     private Family familyToEdit;
+    private IList<Adult> adults;
     private IList<Child> children;
     private IList<Interest> interests;
     private IList<Pet> pets;
@@ -119,13 +120,14 @@ using Models;
     {
         familyToEdit = FamilyData.Get(Id);
         children = familyToEdit.Children;
+        adults = familyToEdit.Adults;
     
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 62 "C:\Users\kkash\RiderProjects\DNP1Assignment1\FamilyBlazorWebApp\Pages\EditFamily.razor"
+#line 176 "C:\Users\kkash\RiderProjects\DNP1Assignment1\FamilyBlazorWebApp\Pages\EditFamily.razor"
      foreach (var  c in children)
     {
         interests = c.Interests;
@@ -136,7 +138,7 @@ using Models;
 #line hidden
 #nullable disable
 #nullable restore
-#line 66 "C:\Users\kkash\RiderProjects\DNP1Assignment1\FamilyBlazorWebApp\Pages\EditFamily.razor"
+#line 180 "C:\Users\kkash\RiderProjects\DNP1Assignment1\FamilyBlazorWebApp\Pages\EditFamily.razor"
      
     }
 

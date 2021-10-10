@@ -97,7 +97,7 @@ using Authentication;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 41 "C:\Users\kkash\RiderProjects\DNP1Assignment1\FamilyBlazorWebApp\Shared\NavMenu.razor"
+#line 50 "C:\Users\kkash\RiderProjects\DNP1Assignment1\FamilyBlazorWebApp\Shared\NavMenu.razor"
        
     private bool collapseNavMenu = true;
 

@@ -105,7 +105,7 @@ using Models;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 125 "C:\Users\kkash\RiderProjects\DNP1Assignment1\FamilyBlazorWebApp\Pages\FamilyMembers.razor"
+#line 149 "C:\Users\kkash\RiderProjects\DNP1Assignment1\FamilyBlazorWebApp\Pages\FamilyMembers.razor"
  
     [Parameter]
     public int Id { get; set; }
@@ -123,25 +123,25 @@ using Models;
         adults = familyMembersToShow.Adults;
         children = familyMembersToShow.Children;
         pets = familyMembersToShow.Pets;
-        
+    
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 142 "C:\Users\kkash\RiderProjects\DNP1Assignment1\FamilyBlazorWebApp\Pages\FamilyMembers.razor"
-         foreach (var  c in children)
-        {
-            interests = c.Interests;
-            pets = c.Pets;
-        }
+#line 166 "C:\Users\kkash\RiderProjects\DNP1Assignment1\FamilyBlazorWebApp\Pages\FamilyMembers.razor"
+     foreach (var  c in children)
+    {
+        interests = c.Interests;
+        pets = c.Pets;
+    }
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 146 "C:\Users\kkash\RiderProjects\DNP1Assignment1\FamilyBlazorWebApp\Pages\FamilyMembers.razor"
-         
+#line 170 "C:\Users\kkash\RiderProjects\DNP1Assignment1\FamilyBlazorWebApp\Pages\FamilyMembers.razor"
+     
     }
 
 #line default

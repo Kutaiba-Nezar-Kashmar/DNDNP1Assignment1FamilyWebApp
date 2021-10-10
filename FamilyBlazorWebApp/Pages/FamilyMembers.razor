@@ -12,11 +12,15 @@
 else
 {
     <br/>
-    <div class="FamilyMemberBox">
+    <div class="TableBox">
         <table class="table">
             <thead>
             <tr>
-                <th>Person ID</th>
+                <AuthorizeView>
+                    <Authorized>
+                        <th>Person ID</th>
+                    </Authorized>
+                </AuthorizeView>
                 <th>First Name</th>
                 <th>Last Name</th>
                 <th>Age</th>
@@ -33,7 +37,11 @@ else
             @foreach (var adult in adults)
             {
                 <tr>
-                    <td>@adult.Id</td>
+                    <AuthorizeView>
+                        <Authorized>
+                            <td>@adult.Id</td>
+                        </Authorized>
+                    </AuthorizeView>
                     <td>@adult.FirstName</td>
                     <td>@adult.LastName</td>
                     <td>@adult.Age</td>
@@ -52,11 +60,15 @@ else
     <br/>
     <h3 style="color: white">Children</h3>
     <br/>
-    <div class="FamilyMemberBox">
+    <div class="TableBox">
         <table class="table">
             <thead>
             <tr>
-                <th>Person ID</th>
+                <AuthorizeView>
+                    <Authorized>
+                        <th>Person ID</th>
+                    </Authorized>
+                </AuthorizeView>
                 <th>First Name</th>
                 <th>Last Name</th>
                 <th>Age</th>
@@ -73,7 +85,11 @@ else
             @foreach (var child in children)
             {
                 <tr>
-                    <td>@child.Id</td>
+                    <AuthorizeView>
+                        <Authorized>
+                            <td>@child.Id</td>
+                        </Authorized>
+                    </AuthorizeView>
                     <td>@child.FirstName</td>
                     <td>@child.LastName</td>
                     <td>@child.Age</td>
@@ -97,10 +113,14 @@ else
     <br/>
     <h3 style="color:white;">Pets</h3>
     <br/>
-    <div class="FamilyMemberBox">
+    <div class="TableBox">
         <table class="table">
             <thead>
-            <th>Pet Id</th>
+            <AuthorizeView>
+                <Authorized>
+                    <th>Pet Id</th>
+                </Authorized>
+            </AuthorizeView>
             <th>Species</th>
             <th>Name</th>
             <th>Age</th>
@@ -109,7 +129,11 @@ else
             <tr>
                 @foreach (var p in pets)
                 {
-                    <td>@p.Id</td>
+                    <AuthorizeView>
+                        <Authorized>
+                            <td>@p.Id</td>
+                        </Authorized>
+                    </AuthorizeView>
                     <td>@p.Species</td>
                     <td>@p.Name</td>
                     <td>@p.Age</td>
@@ -139,10 +163,10 @@ else
         adults = familyMembersToShow.Adults;
         children = familyMembersToShow.Children;
         pets = familyMembersToShow.Pets;
-        @foreach (var  c in children)
-        {
-            interests = c.Interests;
-            pets = c.Pets;
-        }
+    @foreach (var  c in children)
+    {
+        interests = c.Interests;
+        pets = c.Pets;
+    }
     }
 }

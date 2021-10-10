@@ -105,7 +105,7 @@ using Data;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 68 "C:\Users\kkash\RiderProjects\DNP1Assignment1\FamilyBlazorWebApp\Pages\FamilyPage.razor"
+#line 82 "C:\Users\kkash\RiderProjects\DNP1Assignment1\FamilyBlazorWebApp\Pages\FamilyPage.razor"
  
     private IList<Family> familiesToShow;
     private IList<Family> allFamilies;

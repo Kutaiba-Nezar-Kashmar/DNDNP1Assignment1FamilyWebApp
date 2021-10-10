@@ -105,7 +105,7 @@ using Data;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 53 "C:\Users\kkash\RiderProjects\DNP1Assignment1\FamilyBlazorWebApp\Pages\AddFamily.razor"
+#line 120 "C:\Users\kkash\RiderProjects\DNP1Assignment1\FamilyBlazorWebApp\Pages\AddFamily.razor"
  
     private Adult newAdult = new Adult() {JobTitle = new Job()};
     private Pet newPet = new Pet();

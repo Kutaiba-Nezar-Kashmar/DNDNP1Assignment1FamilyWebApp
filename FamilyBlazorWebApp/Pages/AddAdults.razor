@@ -18,32 +18,19 @@
                 <div class="addBox">
                     <form class="formDis">
                         <div class="row">
-                            <div class="col-md-2">
-                                <p>First Name:</p>
-                                <br/>
-                                <br/>
-                                <p>Last Name:</p>
-                                <br/>
-                                <p>Hair Color:</p>
-                                <br/>
-                                <p>Eye Color:</p>
-                                <br/>
-                                <p>Age:</p>
-                                <br/>
-                                <br/>
-                                <p>Weight:</p>
-                                <br/>
-                                <p>Height:</p>
-                                <br/>
-                                <p>Gender:</p>
-                                <br/>
-                                <p>Job Title:</p>
-                                <br/>
-                                <br/>
-                                <p>Salary:</p>
-                                <br/>
+                            <div class="col-md-3">
+                                <p class="labels">First Name:</p>
+                                <p class="labels">Last Name:</p>
+                                <p class="labels">Hair Color:</p>
+                                <p class="labels">Eye Color:</p>
+                                <p class="labels">Age:</p>
+                                <p class="labels">Weight:</p>
+                                <p class="labels">Height:</p>
+                                <p class="labels">Gender:</p>
+                                <p class="labels">Job Title:</p>
+                                <p class="labels">Salary:</p>
                             </div>
-                            <div class="col-md-10">
+                            <div class="col-md-9">
                                 <input class="inputField" type="text" placeholder="First Name" @bind-value="newAdult.FirstName"/>
                                 <input class="inputField" type="text" placeholder="Last Name" @bind-value="newAdult.LastName"/>
                                 <input class="inputField" type="text" placeholder="Color" @bind-value="newAdult.HairColor"/>
@@ -56,7 +43,7 @@
                                 <input class="inputField" type="number" placeholder="Salary" @bind-value="newAdult.JobTitle.Salary"/>
                             </div>
                         </div>
-                        <div class="addBut">
+                        <div class="d-flex justify-content-center">
                             <a class="submit" type="submit">Add To Adults</a>
                         </div>
                     </form>
